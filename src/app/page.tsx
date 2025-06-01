@@ -9,9 +9,9 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <main id="home" className="flex min-h-screen bg-white overflow-hidden">
+      <main id="home" className="flex min-h-screen bg-white">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between max-w-[1280px] px-6 md:px-8 py-12">
           {/* Left Side: Hero Text */}
           <div className="flex-1 md:pr-8">
@@ -34,28 +34,28 @@ export default function Home() {
         </div>
       </main>
 
-      {/* About Us Section */}
-      <section id="about" className="py-12 md:py-24">
-        <MeetOurListener />
+      {/* How It Works Section */}
+      <section id="how-it-works" className="bg-white">
+        <HowItWorks />
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works">
-        <HowItWorks />
+      {/* About Us Section */}
+      <section id="about" className="bg-white">
+        <MeetOurListener />
       </section>
 
       <ListenerFeatures />
       <HeroBanner />
 
       {/* FAQ Section */}
-      <section id="faq">
+      <section id="faq" className="bg-[#f8fafc]">
         <FAQ />
       </section>
 
       {/* Contact Section */}
-      <section id="contact">
+      <section id="contact" className="bg-white">
         <Footer />
       </section>
-    </>
+    </div>
   );
 }
