@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <main className="flex min-h-screen bg-white overflow-hidden">
+      <main id="home" className="flex min-h-screen bg-white overflow-hidden">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between max-w-[1280px] px-6 md:px-8 py-12">
           {/* Left Side: Hero Text */}
           <div className="flex-1 md:pr-8">
@@ -34,13 +34,28 @@ export default function Home() {
         </div>
       </main>
 
+      {/* About Us Section */}
+      <section id="about" className="py-12 md:py-24">
+        <MeetOurListener />
+      </section>
+
       {/* How It Works Section */}
-      <HowItWorks />
-      <MeetOurListener />
+      <section id="how-it-works">
+        <HowItWorks />
+      </section>
+
       <ListenerFeatures />
       <HeroBanner />
-      <FAQ />
-      <Footer />
+
+      {/* FAQ Section */}
+      <section id="faq">
+        <FAQ />
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact">
+        <Footer />
+      </section>
     </>
   );
 }

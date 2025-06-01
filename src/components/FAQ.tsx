@@ -34,43 +34,45 @@ export default function FAQ() {
   );
 
   return (
-    <section className="w-full bg-[#f8fafc] py-20 flex flex-col items-center justify-center">
-      <div className="container mx-auto max-w-2xl px-4">
+    <section className="w-full bg-[#f8fafc] py-12 md:py-20 flex flex-col items-center justify-center">
+      <div className="container mx-auto max-w-2xl px-4 md:px-6">
         {/* Blue box */}
-        <div className="bg-[#5CC3EB] rounded-lg p-6 mb-8 flex items-center justify-between shadow">
-          <div>
-            <h2 className="text-white text-xl font-semibold mb-1">What is Ready Social?</h2>
-            <p className="text-white text-base font-normal">Ready Social is a platform designed to foster meaningful human connections across life, love, and work. Whether you're looking for friendships, relationships, or professional networks, we provide the tools and community to help you thrive.</p>
+        <div className="bg-[#5CC3EB] rounded-lg p-4 md:p-6 mb-6 md:mb-8 flex items-center justify-between shadow">
+          <div className="flex-1">
+            <h2 className="text-white text-lg md:text-xl font-semibold mb-1 md:mb-2">What is Ready Social?</h2>
+            <p className="text-white text-sm md:text-base font-normal">Ready Social is a platform designed to foster meaningful human connections across life, love, and work. Whether you&apos;re looking for friendships, relationships, or professional networks, we provide the tools and community to help you thrive.</p>
           </div>
-          <span className="text-white text-2xl ml-4">&gt;</span>
+          <span className="text-white text-xl md:text-2xl ml-2 md:ml-4 flex-shrink-0">&gt;</span>
         </div>
+
         {/* Search bar */}
-        <div className="mb-8 flex items-center gap-2">
+        <div className="mb-6 md:mb-8 flex items-center gap-2">
           <input
             type="text"
             placeholder="Search FAQs..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#5CC3EB] bg-white shadow"
+            className="w-full rounded-lg border border-gray-300 px-3 md:px-4 py-2 md:py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#5CC3EB] bg-white shadow"
           />
         </div>
+
         {/* FAQ items */}
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           {filteredFaqs.length === 0 && (
-            <div className="text-center text-gray-400 py-8">No FAQs found.</div>
+            <div className="text-center text-gray-400 py-6 md:py-8 text-sm md:text-base">No FAQs found.</div>
           )}
           {filteredFaqs.map((faq, i) => (
             <div key={i} className="bg-white rounded-lg shadow border border-gray-200">
               <button
-                className="w-full flex justify-between items-center px-6 py-5 text-left text-lg font-semibold text-[#22292F] focus:outline-none"
+                className="w-full flex justify-between items-center px-4 md:px-6 py-4 md:py-5 text-left text-base md:text-lg font-semibold text-[#22292F] focus:outline-none"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 aria-expanded={openIndex === i}
               >
-                {faq.question}
-                <span className={`ml-4 transition-transform ${openIndex === i ? 'rotate-90' : ''}`}>▶</span>
+                <span className="pr-4">{faq.question}</span>
+                <span className={`ml-2 flex-shrink-0 transition-transform duration-200 ${openIndex === i ? 'rotate-90' : ''}`}>▶</span>
               </button>
               {openIndex === i && (
-                <div className="px-6 pb-6 text-gray-600 text-base animate-fade-in">
+                <div className="px-4 md:px-6 pb-4 md:pb-6 text-gray-600 text-sm md:text-base animate-fade-in">
                   {faq.answer}
                 </div>
               )}
