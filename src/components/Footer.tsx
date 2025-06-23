@@ -1,76 +1,65 @@
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-200 py-8 md:py-12 px-4 md:px-6 shadow-inner">
-      <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-        {/* About Us */}
-        <div className="flex-1 min-w-[220px]">
-          <h3 className="font-bold text-lg md:text-xl mb-3">Ready Social</h3>
-          <p className="text-gray-600 text-sm mb-4">Ready Social is a platform designed to help users create meaningful human connections across the areas of Life, Love, and Work.</p>
-          <div className="flex gap-4 mb-4">
-            <a href="#" aria-label="Facebook" className="hover:scale-110 transition-transform">
-              <svg width="24" height="24" fill="currentColor" className="text-black">
-                <circle cx="12" cy="12" r="12" fill="#F3F4F6"/>
-                <path d="M15.36 8.64h-1.2c-.24 0-.48.24-.48.48v.96h1.68l-.24 1.68h-1.44v4.32h-1.92v-4.32h-1.2v-1.68h1.2v-1.2c0-1.2.96-2.16 2.16-2.16h1.2v1.68z" fill="#22292F"/>
-              </svg>
-            </a>
-            <a href="#" aria-label="Instagram" className="hover:scale-110 transition-transform">
-              <svg width="24" height="24" fill="currentColor" className="text-black">
-                <circle cx="12" cy="12" r="12" fill="#F3F4F6"/>
-                <path d="M16.8 8.4a1.2 1.2 0 0 0-1.2-1.2h-5.2a1.2 1.2 0 0 0-1.2 1.2v5.2a1.2 1.2 0 0 0 1.2 1.2h5.2a1.2 1.2 0 0 0 1.2-1.2v-5.2zm-1.2 6.4h-5.2a2.4 2.4 0 0 1-2.4-2.4v-5.2a2.4 2.4 0 0 1 2.4-2.4h5.2a2.4 2.4 0 0 1 2.4 2.4v5.2a2.4 2.4 0 0 1-2.4 2.4zm-2.6-5.2a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2zm3.2.4a.4.4 0 1 1-.8 0 .4.4 0 0 1 .8 0z" fill="#22292F"/>
-              </svg>
-            </a>
+    <footer className="bg-white py-12 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* About Us */}
+          <div className="md:col-span-1">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready Social</h3>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">About Us</h4>
+            <p className="text-sm text-gray-600 mb-4">
+              Ready Social is a platform designed to help users create meaningful human connections across the areas of Life, Love, and Work.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" aria-label="Facebook">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M18 36C27.9411 36 36 27.9411 36 18C36 8.05887 27.9411 0 18 0C8.05887 0 0 8.05887 0 18C0 27.9411 8.05887 36 18 36ZM20.25 18.75H18.75V27H15.75V18.75H14.25V16.395L15.75 16.3935V14.8185C15.75 13.1445 16.599 12 18.423 12L20.247 12.0045V14.445H18.9615C18.7605 14.445 18.75 14.5515 18.75 14.85V16.395H20.3175L20.25 18.75Z" fill="black"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Instagram">
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M18 36C27.9411 36 36 27.9411 36 18C36 8.05887 27.9411 0 18 0C8.05887 0 0 8.05887 0 18C0 27.9411 8.05887 36 18 36ZM24.375 11.25H11.625V24.75H24.375V11.25ZM18 22.5C20.4825 22.5 22.5 20.4825 22.5 18C22.5 15.5175 20.4825 13.5 18 13.5C15.5175 13.5 13.5 15.5175 13.5 18C13.5 20.4825 15.5175 22.5 18 22.5ZM21.375 15.75C21.375 16.443 20.8185 17.0625 20.25 17.0625C19.6815 17.0625 19.125 16.443 19.125 15.75C19.125 15.057 19.6815 14.4375 20.25 14.4375C20.8185 14.4375 21.375 15.057 21.375 15.75Z" fill="black"/>
+                </svg>
+              </a>
+            </div>
           </div>
-          {/* Newsletter Signup */}
-          <form className="flex w-full max-w-xs">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="flex-1 rounded-l-lg border border-gray-300 px-3 md:px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#5CC3EB] bg-white"
-            />
-            <button
-              type="submit"
-              className="bg-[#5CC3EB] hover:bg-[#38BDF8] text-white font-semibold px-3 md:px-4 py-2 rounded-r-lg text-sm transition-colors"
-            >
-              Subscribe
-            </button>
-          </form>
+
+          {/* Customer Service */}
+          <div>
+            <h4 className="font-bold text-gray-900 mb-4">Customer Service</h4>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li><a href="#" className="hover:text-black">Contact Us</a></li>
+              <li><a href="#" className="hover:text-black">FAQs</a></li>
+              <li><a href="#" className="hover:text-black">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-black">Terms & Conditions</a></li>
+            </ul>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-bold text-gray-900 mb-4">Quick Links</h4>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li><a href="#" className="hover:text-black">Home</a></li>
+              <li><a href="#" className="hover:text-black">About Us</a></li>
+              <li><a href="#" className="hover:text-black">How It Works</a></li>
+              <li><a href="#" className="hover:text-black">Book a session</a></li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="font-bold text-gray-900 mb-4">Contact Info</h4>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li>+1012 3456 789</li>
+              <li>ReadySocial@gmail.com</li>
+              <li>132 Dartmouth Street<br/>Boston, Massachusetts</li>
+            </ul>
+          </div>
         </div>
 
-        {/* Customer Service */}
-        <div className="flex-1 min-w-[180px]">
-          <h4 className="font-semibold text-base md:text-lg mb-3">Customer Service</h4>
-          <ul className="text-gray-600 text-sm space-y-2">
-            <li><a href="#" className="hover:text-[#5CC3EB] transition-colors">Contact Us</a></li>
-            <li><a href="#" className="hover:text-[#5CC3EB] transition-colors">FAQs</a></li>
-            <li><a href="#" className="hover:text-[#5CC3EB] transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-[#5CC3EB] transition-colors">Terms & Conditions</a></li>
-          </ul>
+        <div className="border-t-2 border-gray-900 mt-12 pt-8 text-left pl-4">
+          <p className="text-sm font-semibold text-gray-900">Copyright © 2025 <span className="text-[#5CC3EB]">Ready Socials</span>. All Rights Reserved.</p>
         </div>
-
-        {/* Quick Links */}
-        <div className="flex-1 min-w-[180px]">
-          <h4 className="font-semibold text-base md:text-lg mb-3">Quick Links</h4>
-          <ul className="text-gray-600 text-sm space-y-2">
-            <li><a href="#" className="hover:text-[#5CC3EB] transition-colors">Home</a></li>
-            <li><a href="#" className="hover:text-[#5CC3EB] transition-colors">About Us</a></li>
-            <li><a href="#" className="hover:text-[#5CC3EB] transition-colors">How It Works</a></li>
-            <li><a href="#" className="hover:text-[#5CC3EB] transition-colors">Book a session</a></li>
-          </ul>
-        </div>
-
-        {/* Contact Info */}
-        <div className="flex-1 min-w-[200px]">
-          <h4 className="font-semibold text-base md:text-lg mb-3">Contact Info</h4>
-          <ul className="text-gray-600 text-sm space-y-2">
-            <li>+102 3456 789</li>
-            <li>ReadySocial@gmail.com</li>
-            <li>132 Dartmouth Street<br/>Boston, Massachusetts</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="border-t border-gray-200 mt-8 md:mt-10 pt-4 md:pt-6 text-center text-xs text-gray-400">
-        Copyright © 2025 <span className="text-[#5CC3EB]">Ready Social</span>. All Rights Reserved.
       </div>
     </footer>
   );

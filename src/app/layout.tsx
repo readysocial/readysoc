@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-white text-black antialiased min-h-screen`}>
+      <body className={`${inter.variable} font-sans bg-white text-black antialiased min-h-screen`}>
         <Navbar />
         {children}
       </body>

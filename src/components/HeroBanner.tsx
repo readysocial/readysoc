@@ -10,7 +10,9 @@ export default function HeroBanner() {
             Connect instantly with a listener who creates a safe, judgement free space.
           </h1>
           <a
-            href="#"
+            href="https://play.google.com/store"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-[#F6535B] hover:bg-[#e13d45] text-white font-semibold px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg shadow transition-colors duration-200 w-full md:w-auto text-center"
           >
             Download the app now
