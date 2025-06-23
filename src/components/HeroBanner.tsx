@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HeroBanner() {
   return (
-    <section className="w-full bg-white py-12 md:py-20 flex items-center justify-center">
+    <section id="hero-banner" className="w-full bg-white py-12 md:py-20 flex items-center justify-center">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between max-w-6xl px-4 md:px-8">
         {/* Left Side: Text and Button */}
         <div className="flex-1 flex flex-col items-start justify-center mb-8 md:mb-0 text-center md:text-left">

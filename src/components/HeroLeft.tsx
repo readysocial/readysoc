@@ -1,6 +1,6 @@
 export default function HeroLeft() {
   return (
-    <div className="flex flex-col items-start justify-center gap-6 md:gap-10 max-w-[640px] pt-4 md:pt-8 px-4 md:px-0">
+    <div id="hero-left" className="flex flex-col items-start justify-center gap-6 md:gap-10 max-w-[640px] pt-4 md:pt-8 px-4 md:px-0">
       <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-black leading-[1.1] text-center md:text-left">
         Real Conversations
         <br />

@@ -37,7 +37,7 @@ const steps: { number: string; title: string; description: string; image?: strin
   
   export default function HowItWorks() {
     return (
-      <section className="relative py-12 md:py-24 bg-white overflow-x-clip overflow-y-visible">
+      <section id="how-it-works" className="relative py-12 md:py-24 bg-white overflow-x-clip overflow-y-visible">
         {/* Large semicircle top right, aligned with heading */}
         <div className="absolute top-[40px] md:top-[60px] right-0 w-[200px] md:w-[378px] h-[200px] md:h-[378px] z-0 overflow-visible pointer-events-none">
           <div className="w-full h-full bg-[#5CC3EB] rounded-full relative" style={{transform: 'translateX(50%)'}}>

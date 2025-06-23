@@ -1,4 +1,13 @@
+'use client';
+
 export default function Footer() {
+  const scrollToComponent = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
@@ -39,10 +48,38 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-gray-900 mb-4">Quick Links</h4>
             <ul className="space-y-3 text-sm text-gray-600">
-              <li><a href="#" className="hover:text-black">Home</a></li>
-              <li><a href="#" className="hover:text-black">About Us</a></li>
-              <li><a href="#" className="hover:text-black">How It Works</a></li>
-              <li><a href="#" className="hover:text-black">Book a session</a></li>
+              <li>
+                <button 
+                  onClick={() => scrollToComponent('hero-left')} 
+                  className="hover:text-black cursor-pointer"
+                >
+                  Home
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToComponent('hero-banner')} 
+                  className="hover:text-black cursor-pointer"
+                >
+                  About Us
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToComponent('how-it-works')} 
+                  className="hover:text-black cursor-pointer"
+                >
+                  How It Works
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToComponent('meet-our-listener')} 
+                  className="hover:text-black cursor-pointer"
+                >
+                  Book a session
+                </button>
+              </li>
             </ul>
           </div>
 
