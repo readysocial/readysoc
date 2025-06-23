@@ -12,7 +12,7 @@ export default function HeroLeft() {
         Ready social provides a safe, secure space to share your thoughts anonymously with trained listeners. Whether you are celebrating a win, venting a frustration, someone i always here to listen.
       </p>
       <a
-        href="https://play.google.com/store"
+        href="https://play.google.com/store/apps/details?id=com.tayor99.readysocial"
         target="_blank"
         rel="noopener noreferrer"
         className="mt-2 px-8 md:px-12 py-4 md:py-5 bg-[#EF4444] text-white text-lg md:text-xl font-semibold rounded-xl hover:bg-red-600 transition-colors w-full md:w-auto text-center"
