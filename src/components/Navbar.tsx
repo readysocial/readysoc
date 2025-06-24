@@ -8,7 +8,7 @@ const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About Us", href: "#about" },
   { name: "How it Works", href: "#how-it-works" },
-  { name: "Contact Us", href: "#contact" },
+  { name: "Contact Us", href: "/contact" },
   { name: "FAQ", href: "#faq" },
 ];
 
@@ -75,13 +75,19 @@ export default function Navbar() {
       <ul className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8 items-center text-base font-medium text-gray-700">
         {navLinks.map((link) => (
           <li key={link.name}>
-            <a
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="hover:text-red-500 transition-colors cursor-pointer"
-            >
-              {link.name}
-            </a>
+            {link.href.startsWith("/") ? (
+              <Link href={link.href} className="hover:text-red-500 transition-colors cursor-pointer">
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="hover:text-red-500 transition-colors cursor-pointer"
+              >
+                {link.name}
+              </a>
+            )}
           </li>
         ))}
       </ul>
@@ -117,13 +123,19 @@ export default function Navbar() {
           <ul className="flex flex-col items-center gap-6 p-8">
             {navLinks.map((link) => (
               <li key={link.name} className="w-full text-center">
-                <a
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="block text-lg font-medium text-gray-700 hover:text-red-500 transition-colors cursor-pointer"
-                >
-                  {link.name}
-                </a>
+                {link.href.startsWith("/") ? (
+                  <Link href={link.href} className="block text-lg font-medium text-gray-700 hover:text-red-500 transition-colors cursor-pointer">
+                    {link.name}
+                  </Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="block text-lg font-medium text-gray-700 hover:text-red-500 transition-colors cursor-pointer"
+                  >
+                    {link.name}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
