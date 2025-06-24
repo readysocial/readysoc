@@ -78,7 +78,7 @@ export default function PrivacyPolicyPage() {
           <li>Analyze user behavior and improve our services. You can manage your cookie preferences through your browser settings.</li>
         </ul>
 
-        <h2 className="text-xl md:text-2xl font-bold text-black mb-2 mt-8">Children's Privacy</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-black mb-2 mt-8">Children&apos;s Privacy</h2>
         <p className="mb-6 text-gray-800">Ready Social is not intended for users under the age of 18. We do not knowingly collect personal data from minors. If we become aware of such data collection, we will delete it promptly.</p>
 
         <h2 className="text-xl md:text-2xl font-bold text-black mb-2 mt-8">Modifications to This Privacy Policy</h2>

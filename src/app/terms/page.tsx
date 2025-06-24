@@ -6,7 +6,7 @@ export default function TermsPage() {
     <div className="min-h-screen bg-white flex flex-col">
       <div className="container mx-auto max-w-3xl px-4 py-12 flex-1">
         <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-10 text-black">Terms and Conditions</h1>
-        <p className="mb-8 text-base md:text-lg text-gray-800">Welcome to Ready Social! These Terms of Service ("Terms") govern your access to and use of Ready Social platform, services, and features (collectively, the "Services"), including but not limited to creating connections across life, love, and work, and participating in listener sessions. By accessing or using our Services, you agree to be bound by these Terms. If you do not agree, please discontinue use of the Services.</p>
+        <p className="mb-8 text-base md:text-lg text-gray-800">Welcome to Ready Social! These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and use of Ready Social platform, services, and features (collectively, the &ldquo;Services&rdquo;), including but not limited to creating connections across life, love, and work, and participating in listener sessions. By accessing or using our Services, you agree to be bound by these Terms. If you do not agree, please discontinue use of the Services.</p>
 
         <h2 className="text-2xl font-bold text-black mb-2 mt-8">About Ready Social</h2>
         <ul className="list-disc pl-6 mb-6 text-gray-800">
@@ -54,13 +54,13 @@ export default function TermsPage() {
 
         <h2 className="text-2xl font-bold text-black mb-2 mt-8">Intellectual Property</h2>
         <ul className="list-disc pl-6 mb-6 text-gray-800">
-          <li>All content on Ready Social's website, including logos, designs, text, and software, is owned by or licensed to Ready Social.</li>
+          <li>All content on Ready Social&apos;s website, including logos, designs, text, and software, is owned by or licensed to Ready Social.</li>
           <li>You may not copy, modify, distribute, or create derivative works from Ready Social intellectual property without explicit written consent.</li>
         </ul>
 
         <h2 className="text-2xl font-bold text-black mb-2 mt-8">Limitations of Liability</h2>
         <ul className="list-disc pl-6 mb-6 text-gray-800">
-          <li>Ready Social is provided on an "as is" and "as available" basis. We make no warranties regarding the accuracy, reliability, or availability of the Services.</li>
+          <li>Ready Social is provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis. We make no warranties regarding the accuracy, reliability, or availability of the Services.</li>
           <li>To the fullest extent permitted by law, Ready Social is not liable for:
             <ul className="list-disc pl-6">
               <li>Any loss or damage resulting from interactions between users.</li>
