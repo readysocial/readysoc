@@ -1,12 +1,23 @@
 'use client';
 
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Footer() {
-  const scrollToComponent = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHomePage = pathname === "/";
+
+  const handleNavigation = (id: string) => {
+    if (isHomePage) {
+      // If we're on the home page, scroll to the section
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If we're on another page, navigate to home page with hash
+      router.push(`/#${id}`);
     }
   };
 
@@ -14,7 +25,7 @@ export default function Footer() {
     <footer className="bg-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-        {/* About Us */}
+          {/* About Us */}
           <div className="md:col-span-1">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready Social</h3>
             <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">About Us</h4>
@@ -29,7 +40,10 @@ export default function Footer() {
               </a>
               <a href="https://www.instagram.com/ready_social?igsh=YzljYTk1ODg3Zg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M18 36C27.9411 36 36 27.9411 36 18C36 8.05887 27.9411 0 18 0C8.05887 0 0 8.05887 0 18C0 27.9411 8.05887 36 18 36ZM24.375 11.25H11.625V24.75H24.375V11.25ZM18 22.5C20.4825 22.5 22.5 20.4825 22.5 18C22.5 15.5175 20.4825 13.5 18 13.5C15.5175 13.5 13.5 15.5175 13.5 18C13.5 20.4825 15.5175 22.5 18 22.5ZM21.375 15.75C21.375 16.443 20.8185 17.0625 20.25 17.0625C19.6815 17.0625 19.125 16.443 19.125 15.75C19.125 15.057 19.6815 14.4375 20.25 14.4375C20.8185 14.4375 21.375 15.057 21.375 15.75Z" fill="black"/>
+                  <circle cx="18" cy="18" r="18" fill="black"/>
+                  <path d="M18 11.6C14.4 11.6 11.6 14.4 11.6 18C11.6 21.6 14.4 24.4 18 24.4C21.6 24.4 24.4 21.6 24.4 18C24.4 14.4 21.6 11.6 18 11.6ZM18 22.4C15.5 22.4 13.6 20.5 13.6 18C13.6 15.5 15.5 13.6 18 13.6C20.5 13.6 22.4 15.5 22.4 18C22.4 20.5 20.5 22.4 18 22.4Z" fill="white"/>
+                  <circle cx="24.8" cy="11.2" r="1.2" fill="white"/>
+                  <path d="M26.2 7.8H9.8C8.7 7.8 7.8 8.7 7.8 9.8V26.2C7.8 27.3 8.7 28.2 9.8 28.2H26.2C27.3 28.2 28.2 27.3 28.2 26.2V9.8C28.2 8.7 27.3 7.8 26.2 7.8ZM26.2 26.2H9.8V9.8H26.2V26.2Z" fill="white"/>
                 </svg>
               </a>
               <a href="https://x.com/readyy_social?t=a4UdyA1lPJRtojDSLnyxyQ&s=08" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
@@ -44,8 +58,17 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-gray-900 mb-4">Customer Service</h4>
             <ul className="space-y-3 text-sm text-gray-600">
-              <li><a href="#" className="hover:text-black">Contact Us</a></li>
-              <li><a href="#" className="hover:text-black">FAQs</a></li>
+              <li>
+                <Link href="/contact" className="hover:text-black">Contact Us</Link>
+              </li>
+              <li>
+                <button 
+                  onClick={() => handleNavigation('faq')} 
+                  className="hover:text-black cursor-pointer"
+                >
+                  FAQs
+                </button>
+              </li>
               <li><Link href="/privacy" className="hover:text-black">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-black">Terms & Conditions</Link></li>
             </ul>
@@ -57,7 +80,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-gray-600">
               <li>
                 <button 
-                  onClick={() => scrollToComponent('hero-left')} 
+                  onClick={() => handleNavigation('home')} 
                   className="hover:text-black cursor-pointer"
                 >
                   Home
@@ -65,7 +88,7 @@ export default function Footer() {
               </li>
               <li>
                 <button 
-                  onClick={() => scrollToComponent('hero-banner')} 
+                  onClick={() => handleNavigation('about')} 
                   className="hover:text-black cursor-pointer"
                 >
                   About Us
@@ -73,19 +96,21 @@ export default function Footer() {
               </li>
               <li>
                 <button 
-                  onClick={() => scrollToComponent('how-it-works')} 
+                  onClick={() => handleNavigation('how-it-works')} 
                   className="hover:text-black cursor-pointer"
                 >
                   How It Works
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToComponent('meet-our-listener')} 
+                <a 
+                  href="https://play.google.com/store/apps/details?id=com.tayor99.readysocial"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-black cursor-pointer"
                 >
                   Book a session
-                </button>
+                </a>
               </li>
             </ul>
           </div>

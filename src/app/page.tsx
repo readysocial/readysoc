@@ -54,8 +54,12 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="bg-white">
-        <Footer />
+        <div className="container mx-auto max-w-6xl px-4 py-12">
+          {/* Add your contact content here */}
+        </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

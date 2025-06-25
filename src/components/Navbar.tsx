@@ -80,13 +80,13 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ) : (
-              <a
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="hover:text-red-500 transition-colors cursor-pointer"
-              >
-                {link.name}
-              </a>
+            <a
+              href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="hover:text-red-500 transition-colors cursor-pointer"
+            >
+              {link.name}
+            </a>
             )}
           </li>
         ))}
@@ -128,13 +128,13 @@ export default function Navbar() {
                     {link.name}
                   </Link>
                 ) : (
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="block text-lg font-medium text-gray-700 hover:text-red-500 transition-colors cursor-pointer"
-                  >
-                    {link.name}
-                  </a>
+                <a
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="block text-lg font-medium text-gray-700 hover:text-red-500 transition-colors cursor-pointer"
+                >
+                  {link.name}
+                </a>
                 )}
               </li>
             ))}
