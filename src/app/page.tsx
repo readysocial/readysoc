@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Image from "next/image";
 import HeroLeft from "../components/HeroLeft";
 import HowItWorks from "../components/HowItWorks";
@@ -8,6 +12,17 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname === '/faq') {
+      const faqSection = document.getElementById('faq');
+      if (faqSection) {
+        faqSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [pathname]);
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
