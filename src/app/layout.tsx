@@ -11,6 +11,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Ready Social",
   description: "A safe, secure space to share your thoughts",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  }
 };
 
 export default function RootLayout({
