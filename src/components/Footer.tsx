@@ -58,9 +58,9 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-gray-900 mb-4">Customer Service</h4>
             <ul className="space-y-3 text-sm text-gray-600">
-              <li>
+              {/* <li>
                 <Link href="/contact" className="hover:text-black">Contact Us</Link>
-              </li>
+              </li> */}
               <li>
                 <button 
                   onClick={() => handleNavigation('faq')} 
@@ -121,7 +121,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-gray-600">
               <li>+234 901 796 4775</li>
               <li>ReadySocial@gmail.com</li>
-              <li>132 Dartmouth Street<br/>Boston, Massachusetts</li>
+              <li>Lekki Phase 1<br/>Lagos, Nigeria</li>
             </ul>
           </div>
         </div>
