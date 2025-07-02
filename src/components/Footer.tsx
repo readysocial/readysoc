@@ -103,14 +103,12 @@ export default function Footer() {
                 </button>
               </li>
               <li>
-                <a 
-                  href="https://play.google.com/store/apps/details?id=com.tayor99.readysocial"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button 
+                  onClick={() => handleNavigation('home')}
                   className="hover:text-black cursor-pointer"
                 >
                   Book a session
-                </a>
+                </button>
               </li>
             </ul>
           </div>
