@@ -6,7 +6,7 @@ export default function HeroLeft() {
         <span className="block whitespace-nowrap">Space. Just for You</span>
       </h1>
       <p className="text-[#4B5563] text-base md:text-xl leading-[1.6] max-w-[600px] text-center md:text-left">
-        Ready social provides a safe, secure space to share your thoughts anonymously with trained listeners. Whether you are celebrating a win, venting a frustration, someone i always here to listen.
+        Ready social provides a safe, secure space to share your thoughts anonymously with trained listeners. Whether you are celebrating a win, venting a frustration, someone is always here to listen.
       </p>
       <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
         <a

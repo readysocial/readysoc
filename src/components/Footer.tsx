@@ -118,8 +118,8 @@ export default function Footer() {
             <h4 className="font-bold text-gray-900 mb-4">Contact Info</h4>
             <ul className="space-y-3 text-sm text-gray-600">
               <li>+234 901 796 4775</li>
-              <li>ReadySocial@gmail.com</li>
-              <li>Lekki Phase 1<br/>Lagos, Nigeria</li>
+              <li>contactreadysocial@gmail.com</li>
+              
             </ul>
           </div>
         </div>
