@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         source: '/privacy-privacy',
         destination: '/privacy',
       },
+      {
+        source: '/privacy-policy',
+        destination: '/privacy',
+      },
     ]
   },
 };
