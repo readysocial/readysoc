@@ -7,8 +7,14 @@ const nextConfig: NextConfig = {
         source: '/faq',
         destination: '/',
       },
+      {
+        source: '/privacy-privacy',
+        destination: '/privacy',
+      },
     ]
   },
 };
 
 export default nextConfig;
+
+
