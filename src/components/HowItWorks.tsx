@@ -29,27 +29,27 @@ const steps: { number: string; title: string; description: string; image?: strin
   
   function Hexagon({ children }: { children: React.ReactNode }) {
     return (
-      <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center" style={{ clipPath: 'polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)', background: '#38BDF8' }}>
-        <span className="text-white text-base md:text-lg font-bold">{children}</span>
+      <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center" style={{ clipPath: 'polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)', background: '#38BDF8' }}>
+        <span className="text-white text-sm sm:text-base md:text-lg font-bold">{children}</span>
       </div>
     );
   }
   
   export default function HowItWorks() {
     return (
-      <section id="how-it-works" className="relative py-12 md:py-24 bg-white overflow-x-clip overflow-y-visible">
+      <section id="how-it-works" className="relative py-8 sm:py-12 md:py-24 bg-white overflow-x-clip overflow-y-visible">
         {/* Large semicircle top right, aligned with heading */}
-        <div className="absolute top-[40px] md:top-[60px] right-0 w-[200px] md:w-[378px] h-[200px] md:h-[378px] z-0 overflow-visible pointer-events-none">
+        <div className="absolute top-[30px] sm:top-[40px] md:top-[60px] right-0 w-[150px] sm:w-[200px] md:w-[378px] h-[150px] sm:h-[200px] md:h-[378px] z-0 overflow-visible pointer-events-none">
           <div className="w-full h-full bg-[#5CC3EB] rounded-full relative" style={{transform: 'translateX(50%)'}}>
             {/* Medium circle inside semicircle */}
-            <div className="absolute top-[60px] md:top-[114px] left-[-50px] md:left-[-100px] w-[50px] md:w-[100px] h-[50px] md:h-[100px] bg-[#5CC3EB] rounded-full" />
+            <div className="absolute top-[45px] sm:top-[60px] md:top-[114px] left-[-37px] sm:left-[-50px] md:left-[-100px] w-[37px] sm:w-[50px] md:w-[100px] h-[37px] sm:h-[50px] md:h-[100px] bg-[#5CC3EB] rounded-full" />
             {/* Small circle inside semicircle */}
-            <div className="absolute top-[8px] md:top-[16px] left-[-30px] md:left-[-60px] w-[25px] md:w-[50px] h-[25px] md:h-[50px] bg-[#5CC3EB] rounded-full" />
+            <div className="absolute top-[6px] sm:top-[8px] md:top-[16px] left-[-22px] sm:left-[-30px] md:left-[-60px] w-[18px] sm:w-[25px] md:w-[50px] h-[18px] sm:h-[25px] md:h-[50px] bg-[#5CC3EB] rounded-full" />
           </div>
         </div>
         
         <div className="container mx-auto max-w-[1280px] px-4 md:px-8 relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 md:mb-24 text-black">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-24 text-black">
             How It Works
           </h2>
   
@@ -66,11 +66,11 @@ const steps: { number: string; title: string; description: string; image?: strin
             </svg>
   
             {/* Steps */}
-            <div className="space-y-20 md:space-y-40 w-full">
+            <div className="space-y-12 sm:space-y-16 md:space-y-40 w-full">
               {steps.map((step) => (
                 <div
                   key={step.number}
-                  className="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center w-full"
+                  className="relative grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-16 items-center w-full"
                 >
                   {/* Hexagon centered on the dotted line */}
                   <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20">
@@ -85,8 +85,8 @@ const steps: { number: string; title: string; description: string; image?: strin
                         <div className="md:hidden mb-4">
                           <Hexagon>{step.number}</Hexagon>
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-black w-full text-left">{step.title}</h3>
-                        <p className="text-black text-base md:text-lg leading-relaxed w-full max-w-md text-left">{step.description}</p>
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-black w-full text-left">{step.title}</h3>
+                        <p className="text-black text-sm sm:text-base md:text-lg leading-relaxed w-full max-w-md text-left">{step.description}</p>
                       </div>
                       {/* Right column: image and circles */}
                       <div className="flex flex-col items-center relative justify-center h-full">
@@ -96,7 +96,7 @@ const steps: { number: string; title: string; description: string; image?: strin
                             alt={step.title} 
                             width={220} 
                             height={420} 
-                            className="relative z-10 w-auto h-[280px] md:h-[420px] object-contain drop-shadow-lg" 
+                            className="relative z-10 w-auto h-[200px] sm:h-[280px] md:h-[420px] object-contain drop-shadow-lg" 
                           />
                         )}
                         {step.number === "04" && (
@@ -128,7 +128,7 @@ const steps: { number: string; title: string; description: string; image?: strin
                             alt={step.title} 
                             width={220} 
                             height={420} 
-                            className="relative z-10 w-auto h-[280px] md:h-[420px] object-contain drop-shadow-lg" 
+                            className="relative z-10 w-auto h-[200px] sm:h-[280px] md:h-[420px] object-contain drop-shadow-lg" 
                           />
                         )}
                       </div>
@@ -137,8 +137,8 @@ const steps: { number: string; title: string; description: string; image?: strin
                         <div className="md:hidden mb-4">
                           <Hexagon>{step.number}</Hexagon>
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-black w-full text-left">{step.title}</h3>
-                        <p className="text-black text-base md:text-lg leading-relaxed w-full max-w-md text-left">{step.description}</p>
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-black w-full text-left">{step.title}</h3>
+                        <p className="text-black text-sm sm:text-base md:text-lg leading-relaxed w-full max-w-md text-left">{step.description}</p>
                       </div>
                     </>
                   )}
