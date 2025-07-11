@@ -6,8 +6,11 @@ export default function HeroBanner() {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between max-w-6xl px-4 md:px-8">
         {/* Left Side: Text and Button */}
         <div className="flex-1 flex flex-col items-start justify-center mb-6 md:mb-0 text-center md:text-left w-full">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-black mb-4 md:mb-8 max-w-lg mx-auto md:mx-0">
-            Connect instantly with a listener who creates a safe, judgement free space.
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-black mb-4 md:mb-8 max-w-lg mx-auto md:mx-0 flex flex-col">
+            <span>Real</span>
+            <span>Conversations.</span>
+            <span className="whitespace-nowrap">Safe Space.</span>
+            <span>Just for You</span>
           </h1>
           <a
             href="https://play.google.com/store/apps/details?id=com.tayor99.readysocial"

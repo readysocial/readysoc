@@ -1,9 +1,11 @@
 export default function HeroLeft() {
   return (
     <div id="hero-left" className="flex flex-col items-start justify-center gap-4 sm:gap-6 md:gap-10 max-w-[640px] pt-4 md:pt-8 px-4 md:px-0">
-      <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-[54px] font-bold text-black leading-[1.2] sm:leading-[1.1] text-center md:text-left w-full">
-        <span className="block">Real Conversations. Safe</span>
-        <span className="block">Space. Just for You</span>
+      <h1 className="text-3xl md:text-5xl lg:text-[54px] font-bold text-black leading-[1.2] sm:leading-[1.1] text-center md:text-left w-full">
+        <span className="block">Real</span>
+        <span className="block">Conversations.</span>
+        <span className="block">Safe Space.</span>
+        <span className="block">Just for You</span>
       </h1>
       <p className="text-[#4B5563] text-sm sm:text-base md:text-xl leading-[1.6] max-w-[600px] text-center md:text-left w-full">
         Ready social provides a safe, secure space to share your thoughts anonymously with trained listeners. Whether you are celebrating a win, venting a frustration, someone is always here to listen.
