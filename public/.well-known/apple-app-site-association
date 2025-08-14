@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TEAMID.com.tayor99.readysocial",
+        "paths": [
+          "/open-app"
+        ]
+      }
+    ]
+  }
+}

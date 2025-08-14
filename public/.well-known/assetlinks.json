@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tayor99.readysocial",
+      "sha256_cert_fingerprints": [
+        "38:F4:70:3B:85:4C:88:99:6E:6C:EF:8B:BD:09:40:1D:A6:0A:BF:15:77:30:9F:F0:DD:25:73:42:84:6C:64:9D"
+      ]
+    }
+  }
+]
