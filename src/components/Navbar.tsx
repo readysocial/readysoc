@@ -150,8 +150,15 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Right: Placeholder for future (keeps center alignment) */}
-      <div className="hidden md:block min-w-[180px]" />
+      {/* Right: CTA */} 
+      <div className="hidden min-w-[180px] md:flex md:justify-end">
+        <Link
+          href="/login"
+          className="rounded-full border border-[#f6535b] px-5 py-2 text-sm font-semibold text-[#f6535b] transition-colors hover:bg-[#f6535b] hover:text-white"
+        >
+          Log in
+        </Link>
+      </div>
     </nav>
   );
 } 
