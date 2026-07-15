@@ -34,3 +34,26 @@ input:-webkit-autofill:focus {
   caret-color: #1f2937;
   transition: background-color 99999s ease-out;
 }
+
+@keyframes sparkFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spark-card {
+  animation: sparkFadeUp 480ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spark-card,
+  .spark-card * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

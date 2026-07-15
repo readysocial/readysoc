@@ -18,6 +18,10 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
+  if (pathname?.startsWith("/spark-bundle")) {
+    return null;
+  }
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsMenuOpen(false);
