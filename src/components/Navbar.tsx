@@ -5,11 +5,13 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
+const PLAY_STORE =
+  "https://play.google.com/store/apps/details?id=com.tayor99.readysocial";
+
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About us", href: "#about" },
   { name: "How it works", href: "#how-it-works" },
-  { name: "Blog", href: "/blog" },
   { name: "FAQ", href: "#faq" },
 ];
 
@@ -24,19 +26,22 @@ export default function Navbar() {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (pathname?.startsWith("/spark-bundle")) {
     return null;
   }
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     e.preventDefault();
     setIsMenuOpen(false);
 
-    if (pathname === '/') {
+    if (pathname === "/") {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
@@ -47,55 +52,52 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm' : 'bg-white'
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-white"
+      }`}
+    >
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
         <div className="flex items-center justify-between h-20">
           {/* Left: Logo */}
-          <div className="flex items-center gap-2 min-w-[140px] md:min-w-[180px]">
-            <Link href="/" className="flex items-center gap-2">
+          <div className="flex min-w-[120px] items-center md:min-w-[140px]">
+            <Link href="/" className="flex items-center">
               <Image
-                src="/RS icon png@3x 1.png"
-                alt="Ready Social Logo"
-                width={32}
-                height={32}
-                className="w-8 h-8 md:w-10 md:h-10"
+                src="/landing/logo-mark.svg"
+                alt="Ready Social"
+                width={39}
+                height={24}
+                className="h-6 w-auto"
                 priority
               />
-              <span className="font-bold text-base md:text-lg text-gray-900">Ready Social</span>
             </Link>
           </div>
 
           {/* Desktop: Centered Nav Links */}
-          <ul className="hidden md:flex items-center gap-8 lg:gap-12 text-base font-medium text-gray-700">
+          <ul className="hidden items-center gap-8 text-sm font-medium text-[#475467] md:flex">
             {navLinks.map((link) => (
               <li key={link.name}>
-                {link.href.startsWith("/") ? (
-                  <Link href={link.href} className="hover:text-[#f6535b] transition-colors duration-200 cursor-pointer">
-                    {link.name}
-                  </Link>
-                ) : (
                 <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="hover:text-[#f6535b] transition-colors duration-200 cursor-pointer"
+                  className="cursor-pointer tracking-[-0.084px] transition-colors duration-200 hover:text-[#fb3748]"
                 >
                   {link.name}
                 </a>
-                )}
               </li>
             ))}
           </ul>
 
-          {/* Right: Log in Button */}
-          <div className="hidden md:flex min-w-[140px] justify-end">
-            <Link
-              href="/login"
-              className="px-6 py-2 border border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 text-base font-medium"
+          {/* Right: Download app */}
+          <div className="hidden min-w-[120px] justify-end md:flex md:min-w-[140px]">
+            <a
+              href={PLAY_STORE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-10 items-center justify-center rounded-[10px] border border-[#e1e4ea] bg-white px-3 text-sm font-medium tracking-[-0.084px] text-[#525866] shadow-[0px_1px_2px_0px_rgba(10,13,20,0.03)] transition-colors hover:bg-[#f8fafc]"
             >
-              Log in
-            </Link>
+              Download app
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -140,33 +142,29 @@ export default function Navbar() {
           <ul className="flex flex-col items-center gap-8 p-8">
             {navLinks.map((link) => (
               <li key={link.name} className="w-full text-center">
-                {link.href.startsWith("/") ? (
-                  <Link href={link.href} className="block text-lg font-medium text-gray-700 hover:text-[#f6535b] transition-colors cursor-pointer">
-                    {link.name}
-                  </Link>
-                ) : (
                 <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="block text-lg font-medium text-gray-700 hover:text-[#f6535b] transition-colors cursor-pointer"
+                  className="block cursor-pointer text-lg font-medium text-[#475467] transition-colors hover:text-[#fb3748]"
                 >
                   {link.name}
                 </a>
-                )}
               </li>
             ))}
-            <li className="w-full text-center pt-4">
-              <Link
-                href="/login"
-                className="inline-block px-8 py-3 border border-gray-300 text-gray-700 rounded-full hover:bg-gray-50 transition-colors duration-200"
+            <li className="w-full pt-4 text-center">
+              <a
+                href={PLAY_STORE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 items-center justify-center rounded-[10px] border border-[#e1e4ea] bg-white px-6 text-sm font-medium text-[#525866]"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Log in
-              </Link>
+                Download app
+              </a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   );
-} 
+}
