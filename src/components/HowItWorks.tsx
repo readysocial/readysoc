@@ -39,12 +39,12 @@ const steps: { number: string; title: string; description: string; image?: strin
     return (
       <section id="how-it-works" className="relative py-8 sm:py-12 md:py-24 bg-white overflow-x-clip overflow-y-visible">
         {/* Large semicircle top right, aligned with heading */}
-        <div className="absolute top-[30px] sm:top-[40px] md:top-[60px] right-0 w-[150px] sm:w-[200px] md:w-[378px] h-[150px] sm:h-[200px] md:h-[378px] z-0 overflow-visible pointer-events-none">
+        <div className="absolute top-[30px] sm:top-[40px] md:top-[60px] right-0 w-[100px] sm:w-[150px] md:w-[378px] h-[100px] sm:h-[150px] md:h-[378px] z-0 overflow-visible pointer-events-none">
           <div className="w-full h-full bg-[#5CC3EB] rounded-full relative" style={{transform: 'translateX(50%)'}}>
             {/* Medium circle inside semicircle */}
-            <div className="absolute top-[45px] sm:top-[60px] md:top-[114px] left-[-37px] sm:left-[-50px] md:left-[-100px] w-[37px] sm:w-[50px] md:w-[100px] h-[37px] sm:h-[50px] md:h-[100px] bg-[#5CC3EB] rounded-full" />
+            <div className="absolute top-[30px] sm:top-[45px] md:top-[114px] left-[-25px] sm:left-[-37px] md:left-[-100px] w-[25px] sm:w-[37px] md:w-[100px] h-[25px] sm:h-[37px] md:h-[100px] bg-[#5CC3EB] rounded-full" />
             {/* Small circle inside semicircle */}
-            <div className="absolute top-[6px] sm:top-[8px] md:top-[16px] left-[-22px] sm:left-[-30px] md:left-[-60px] w-[18px] sm:w-[25px] md:w-[50px] h-[18px] sm:h-[25px] md:h-[50px] bg-[#5CC3EB] rounded-full" />
+            <div className="absolute top-[4px] sm:top-[6px] md:top-[16px] left-[-15px] sm:left-[-22px] md:left-[-60px] w-[12px] sm:w-[18px] md:w-[50px] h-[12px] sm:h-[18px] md:h-[50px] bg-[#5CC3EB] rounded-full" />
           </div>
         </div>
         
@@ -66,11 +66,11 @@ const steps: { number: string; title: string; description: string; image?: strin
             </svg>
   
             {/* Steps */}
-            <div className="space-y-12 sm:space-y-16 md:space-y-40 w-full">
+            <div className="space-y-10 sm:space-y-12 md:space-y-40 w-full">
               {steps.map((step) => (
                 <div
                   key={step.number}
-                  className="relative grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-16 items-center w-full"
+                  className="relative grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-16 items-center w-full"
                 >
                   {/* Hexagon centered on the dotted line */}
                   <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-20">
@@ -81,12 +81,12 @@ const steps: { number: string; title: string; description: string; image?: strin
                   {step.number === "02" || step.number === "04" ? (
                     <>
                       {/* Left column: text content */}
-                      <div className="flex flex-col items-start md:pl-0 relative z-10">
-                        <div className="md:hidden mb-4">
+                      <div className="flex flex-col items-center md:items-start md:pl-0 relative z-10 text-center md:text-left">
+                        <div className="md:hidden mb-3">
                           <Hexagon>{step.number}</Hexagon>
                         </div>
-                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-black w-full text-left">{step.title}</h3>
-                        <p className="text-black text-sm sm:text-base md:text-lg leading-relaxed w-full max-w-md text-left">{step.description}</p>
+                        <h3 className="text-base sm:text-lg md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-black w-full">{step.title}</h3>
+                        <p className="text-black text-xs sm:text-sm md:text-lg leading-relaxed w-full max-w-md">{step.description}</p>
                       </div>
                       {/* Right column: image and circles */}
                       <div className="flex flex-col items-center relative justify-center h-full">
@@ -96,7 +96,7 @@ const steps: { number: string; title: string; description: string; image?: strin
                             alt={step.title} 
                             width={220} 
                             height={420} 
-                            className="relative z-10 w-auto h-[200px] sm:h-[280px] md:h-[420px] object-contain drop-shadow-lg" 
+                            className="relative z-10 w-auto h-[150px] sm:h-[200px] md:h-[420px] object-contain drop-shadow-lg" 
                           />
                         )}
                         {step.number === "04" && (
@@ -128,17 +128,17 @@ const steps: { number: string; title: string; description: string; image?: strin
                             alt={step.title} 
                             width={220} 
                             height={420} 
-                            className="relative z-10 w-auto h-[200px] sm:h-[280px] md:h-[420px] object-contain drop-shadow-lg" 
+                            className="relative z-10 w-auto h-[150px] sm:h-[200px] md:h-[420px] object-contain drop-shadow-lg" 
                           />
                         )}
                       </div>
                       {/* Right column: text content */}
-                      <div className="flex flex-col items-start md:pl-12">
-                        <div className="md:hidden mb-4">
+                      <div className="flex flex-col items-center md:items-start md:pl-12 text-center md:text-left">
+                        <div className="md:hidden mb-3">
                           <Hexagon>{step.number}</Hexagon>
                         </div>
-                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-black w-full text-left">{step.title}</h3>
-                        <p className="text-black text-sm sm:text-base md:text-lg leading-relaxed w-full max-w-md text-left">{step.description}</p>
+                        <h3 className="text-base sm:text-lg md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-black w-full">{step.title}</h3>
+                        <p className="text-black text-xs sm:text-sm md:text-lg leading-relaxed w-full max-w-md">{step.description}</p>
                       </div>
                     </>
                   )}
