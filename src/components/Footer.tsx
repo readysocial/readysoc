@@ -1,8 +1,47 @@
-'use client';
+"use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
+import { landingAssets } from "@/components/landing/assets";
+
+const SOCIAL = [
+  {
+    src: "/landing/footer/social-1.png",
+    label: "X (Twitter)",
+    href: "https://x.com/readyy_social?t=a4UdyA1lPJRtojDSLnyxyQ&s=08",
+  },
+  {
+    src: "/landing/footer/social-2.png",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/",
+  },
+  {
+    src: "/landing/footer/social-3.png",
+    label: "Facebook",
+    href: "https://www.facebook.com/share/1W5wNcWBAu/",
+  },
+  {
+    src: "/landing/footer/social-4.png",
+    label: "GitHub",
+    href: "https://github.com/",
+  },
+  {
+    src: "/landing/footer/social-5.png",
+    label: "Instagram",
+    href: "https://www.instagram.com/ready_social?igsh=YzljYTk1ODg3Zg==",
+  },
+  {
+    src: "/landing/footer/social-6.png",
+    label: "Dribbble",
+    href: "https://dribbble.com/",
+  },
+] as const;
+
+/**
+ * Desktop composition from Paper MacBook Pro 14" - 10 footer.
+ */
 export default function Footer() {
   const pathname = usePathname();
   const router = useRouter();
@@ -10,118 +49,152 @@ export default function Footer() {
 
   const handleNavigation = (id: string) => {
     if (isHomePage) {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     } else {
       router.push(`/#${id}`);
     }
   };
 
+  const linkClass =
+    "font-[family-name:var(--font-landing-body)] text-base font-normal leading-6 tracking-[-0.011em] text-[#171717] transition-colors hover:text-[#5C5C5C]";
+  const headingClass =
+    "font-[family-name:var(--font-landing-body)] text-base font-normal leading-6 tracking-[-0.011em] text-[#5C5C5C]";
+
   return (
-    <footer className="bg-white py-6 sm:py-10 md:py-12 px-3 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-          {/* About Us */}
-          <div className="md:col-span-1 sm:col-span-2">
-            <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-4">Ready Social</h3>
-            <h4 className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-gray-500 mb-1 sm:mb-2">About Us</h4>
-            <p className="text-[11px] sm:text-sm text-gray-600 mb-3 sm:mb-4">
-              Ready Social is a platform designed to help users create meaningful human connections across the areas of Life, Love, and Work.
+    <footer className="relative w-full overflow-x-clip bg-white px-6 pb-8 pt-16 lg:px-20 lg:pb-10 lg:pt-20">
+      <div className="mx-auto flex w-full max-w-[1352px] flex-col gap-16">
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-stretch lg:justify-between">
+          {/* Brand */}
+          <div className="flex min-h-[184px] w-full max-w-[351px] flex-col justify-between gap-8">
+            <p className="font-[family-name:var(--font-landing-body)] text-lg font-normal leading-6 tracking-[-0.015em] text-[#5C5C5C]">
+              Users create meaningful human connections across the areas of
+              Life, Love, and Work.
             </p>
-            <div className="flex space-x-2 sm:space-x-4">
-              <a href="https://www.facebook.com/share/1W5wNcWBAu/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-7 h-7 sm:w-9 sm:h-9">
-                <svg width="100%" height="100%" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M18 36C27.9411 36 36 27.9411 36 18C36 8.05887 27.9411 0 18 0C8.05887 0 0 8.05887 0 18C0 27.9411 8.05887 36 18 36ZM20.25 18.75H18.75V27H15.75V18.75H14.25V16.395L15.75 16.3935V14.8185C15.75 13.1445 16.599 12 18.423 12L20.247 12.0045V14.445H18.9615C18.7605 14.445 18.75 14.5515 18.75 14.85V16.395H20.3175L20.25 18.75Z" fill="black"/>
-                </svg>
-              </a>
-              <a href="https://www.instagram.com/ready_social?igsh=YzljYTk1ODg3Zg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-7 h-7 sm:w-9 sm:h-9">
-                <svg width="100%" height="100%" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="18" cy="18" r="18" fill="black"/>
-                  <path d="M18 11.6C14.4 11.6 11.6 14.4 11.6 18C11.6 21.6 14.4 24.4 18 24.4C21.6 24.4 24.4 21.6 24.4 18C24.4 14.4 21.6 11.6 18 11.6ZM18 22.4C15.5 22.4 13.6 20.5 13.6 18C13.6 15.5 15.5 13.6 18 13.6C20.5 13.6 22.4 15.5 22.4 18C22.4 20.5 20.5 22.4 18 22.4Z" fill="white"/>
-                  <circle cx="24.8" cy="11.2" r="1.2" fill="white"/>
-                  <path d="M26.2 7.8H9.8C8.7 7.8 7.8 8.7 7.8 9.8V26.2C7.8 27.3 8.7 28.2 9.8 28.2H26.2C27.3 28.2 28.2 27.3 28.2 26.2V9.8C28.2 8.7 27.3 7.8 26.2 7.8ZM26.2 26.2H9.8V9.8H26.2V26.2Z" fill="white"/>
-                </svg>
-              </a>
-              <a href="https://x.com/readyy_social?t=a4UdyA1lPJRtojDSLnyxyQ&s=08" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" className="w-7 h-7 sm:w-9 sm:h-9">
-                <svg width="100%" height="100%" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M18 36C27.9411 36 36 27.9411 36 18C36 8.05887 27.9411 0 18 0C8.05887 0 0 8.05887 0 18C0 27.9411 8.05887 36 18 36ZM19.7781 15.5L24.0311 10.5H22.3175L18.7086 14.7729L15.8297 10.5H11.25L15.6751 16.9479L11.25 22.125H12.9636L16.7437 17.675L19.7701 22.125H24.3498L19.7781 15.5ZM17.5089 16.9034L16.8365 15.9361L13.1625 10.8939H15.2789L18.1726 14.8764L18.845 15.8437L22.6789 21.1125H20.5625L17.5089 16.9034Z" fill="black"/>
-                </svg>
-              </a>
+            <Link href="/" className="inline-flex w-fit items-center">
+              <Image
+                src={landingAssets.brand.logoMark}
+                alt="Ready Social"
+                width={39}
+                height={24}
+                className="h-6 w-auto"
+              />
+            </Link>
+          </div>
+
+          {/* Link columns */}
+          <div className="flex flex-col gap-10 sm:flex-row sm:flex-wrap sm:gap-x-16 sm:gap-y-10">
+            <div className="flex min-w-[115px] flex-col gap-4">
+              <h4 className={headingClass}>Customer Service</h4>
+              <ul className="flex flex-col gap-2">
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => handleNavigation("faq")}
+                    className={`${linkClass} cursor-pointer text-left`}
+                  >
+                    FAQs
+                  </button>
+                </li>
+                <li>
+                  <Link href="/privacy" className={linkClass}>
+                    Privacy policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className={linkClass}>
+                    Terms & condition
+                  </Link>
+                </li>
+              </ul>
             </div>
-          </div>
 
-          {/* Customer Service */}
-          <div>
-            <h4 className="text-sm sm:text-lg font-bold text-gray-900 mb-2 sm:mb-4">Customer Service</h4>
-            <ul className="space-y-1 sm:space-y-3 text-[11px] sm:text-sm text-gray-600">
-              <li>
-                <button 
-                  onClick={() => handleNavigation('faq')} 
-                  className="hover:text-black cursor-pointer"
-                >
-                  FAQs
-                </button>
-              </li>
-              <li><Link href="/privacy" className="hover:text-black">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-black">Terms & Conditions</Link></li>
-            </ul>
-          </div>
+            <div className="flex min-w-[118px] flex-col gap-4">
+              <h4 className={headingClass}>Quick Links</h4>
+              <ul className="flex flex-col gap-2">
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => handleNavigation("home")}
+                    className={`${linkClass} cursor-pointer text-left`}
+                  >
+                    Home
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => handleNavigation("about")}
+                    className={`${linkClass} cursor-pointer text-left`}
+                  >
+                    About Us
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => handleNavigation("how-it-works")}
+                    className={`${linkClass} cursor-pointer text-left`}
+                  >
+                    How It Works
+                  </button>
+                </li>
+                <li>
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.tayor99.readysocial"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={linkClass}
+                  >
+                    Book a session
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-sm sm:text-lg font-bold text-gray-900 mb-2 sm:mb-4">Quick Links</h4>
-            <ul className="space-y-1 sm:space-y-3 text-[11px] sm:text-sm text-gray-600">
-              <li>
-                <button 
-                  onClick={() => handleNavigation('home')} 
-                  className="hover:text-black cursor-pointer"
-                >
-                  Home
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => handleNavigation('about')} 
-                  className="hover:text-black cursor-pointer"
-                >
-                  About Us
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => handleNavigation('how-it-works')} 
-                  className="hover:text-black cursor-pointer"
-                >
-                  How It Works
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => handleNavigation('home')}
-                  className="hover:text-black cursor-pointer"
-                >
-                  Book a session
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-sm sm:text-lg font-bold text-gray-900 mb-2 sm:mb-4">Contact Info</h4>
-            <ul className="space-y-1 sm:space-y-3 text-[11px] sm:text-sm text-gray-600">
-              <li>+234 901 796 4775</li>
-              <li>contactreadysocial@gmail.com</li>
-            </ul>
+            <div className="flex min-w-[232px] flex-col gap-4">
+              <h4 className={headingClass}>Contact Info</h4>
+              <ul className="flex flex-col gap-2">
+                <li className={linkClass}>+234 901 796 4775</li>
+                <li>
+                  <a
+                    href="mailto:contactreadysocial@gmail.com"
+                    className={linkClass}
+                  >
+                    contactreadysocial@gmail.com
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="border-t-2 border-gray-900 mt-6 sm:mt-10 md:mt-12 pt-4 sm:pt-8 text-center sm:text-left">
-          <p className="text-[11px] sm:text-sm font-semibold text-gray-900">Copyright © 2025 <span className="text-[#5CC3EB]">Ready Socials</span>. All Rights Reserved.</p>
+        {/* Bottom bar */}
+        <div className="flex flex-col gap-6 border-t border-[#EAECF0] pt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+          <p className="font-[family-name:var(--font-landing-body)] text-base font-normal leading-6 text-[#667085]">
+            © 2025 Ready Social. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            {SOCIAL.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={item.label}
+                className="opacity-80 transition-opacity hover:opacity-100"
+              >
+                <Image
+                  src={item.src}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="h-6 w-6"
+                />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
   );
-} 
+}
