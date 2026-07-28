@@ -37,6 +37,9 @@ export const landingAssets = {
     phone: "/landing/cta/phone-cta.png",
   },
   process: {
-    signupModal: "/landing/process/signup-modal.png",
+    stepSignupPattern: "/landing/process/step-signup-pattern.png",
+    stepGift: "/landing/process/step-gift.png",
+    stepListener: "/landing/process/step-listener.png",
+    stepClarity: "/landing/process/step-clarity.png",
   },
 } as const;
