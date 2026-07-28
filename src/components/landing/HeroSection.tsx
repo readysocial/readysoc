@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,14 +16,14 @@ const floaters = [
     alt: "Happy blue Spark character",
     className:
       "left-[2%] top-2 w-14 -rotate-[11deg] sm:left-[6%] sm:top-4 sm:w-20 md:left-[8%] md:top-6 md:w-[107px] lg:left-[12%]",
-    delay: "700ms",
+    delay: "0ms",
   },
   {
     src: ASSETS.floaterListen,
     alt: "Listening blue Spark character",
     className:
       "right-[2%] top-0 w-12 sm:right-[6%] sm:top-2 sm:w-[72px] md:right-[8%] md:w-[100px] lg:right-[12%]",
-    delay: "850ms",
+    delay: "150ms",
   },
 ] as const;
 
@@ -34,50 +33,35 @@ const lowerFloaters = [
     alt: "Sad red Spark character",
     className:
       "left-[2%] top-0 z-20 w-12 -rotate-[15deg] sm:left-[4%] sm:w-16 md:-left-2 md:w-[82px] lg:-left-6",
-    delay: "950ms",
+    delay: "250ms",
   },
   {
     src: ASSETS.floaterWallet,
     alt: "Green wallet Spark character",
     className:
       "right-[2%] top-4 z-20 w-14 rotate-[30deg] sm:right-[4%] sm:w-18 md:-right-2 md:w-[94px] lg:-right-8",
-    delay: "1100ms",
+    delay: "400ms",
   },
 ] as const;
 
 export default function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   return (
     <section
       id="home"
       className="relative w-full overflow-hidden bg-white pt-20"
     >
       <div className="relative mx-auto flex w-full max-w-[1512px] flex-col items-center px-4 sm:px-8 md:px-12 lg:px-20">
-        {/* Headline band + floaters */}
+        {/* Headline band + floaters (desktop only — avoid tablet overlap) */}
         <div className="relative z-20 mt-10 w-full sm:mt-14 md:mt-16">
           {floaters.map((floater) => (
             <div
               key={floater.src}
-              className={`pointer-events-none absolute z-0 transition-all duration-1000 ${
-                floater.className
-              } ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-4 opacity-0"
-              }`}
-              style={{ transitionDelay: floater.delay }}
+              className={`pointer-events-none absolute z-0 hidden lg:block ${floater.className}`}
               aria-hidden
             >
               <div
                 style={{
-                  animation: isVisible
-                    ? "landing-float 3.2s ease-in-out infinite"
-                    : undefined,
+                  animation: "landing-float 3.2s ease-in-out infinite",
                   animationDelay: floater.delay,
                 }}
               >
@@ -94,14 +78,7 @@ export default function HeroSection() {
           ))}
 
           <div className="relative z-10 mx-auto flex w-full max-w-[649px] flex-col items-center gap-6 text-center md:gap-8">
-            <div
-              className={`flex flex-col items-center gap-4 transition-all duration-700 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
-              style={{ transitionDelay: "100ms" }}
-            >
+            <div className="flex flex-col items-center gap-4">
               <h1 className="font-[family-name:var(--font-landing-display)] text-[28px] font-normal leading-none tracking-[-0.02em] text-[#171717] sm:text-5xl md:text-[64px]">
                 Real Conversations.
                 <br />
@@ -115,14 +92,7 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <div
-              className={`flex flex-row items-center justify-center gap-3 transition-all duration-700 sm:gap-4 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
-              style={{ transitionDelay: "350ms" }}
-            >
+            <div className="flex flex-row items-center justify-center gap-3 sm:gap-4">
               <a
                 href={PLAY_STORE}
                 target="_blank"
@@ -146,12 +116,7 @@ export default function HeroSection() {
         </div>
 
         {/* Rasterized phone stack from Paper — sits flush at section bottom */}
-        <div
-          className={`relative z-10 mt-8 w-full max-w-[720px] pb-0 transition-all duration-1000 sm:mt-10 md:mt-12 md:max-w-[835px] ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
-          style={{ transitionDelay: "550ms" }}
-        >
+        <div className="relative z-10 mt-8 w-full max-w-[720px] pb-0 sm:mt-10 md:mt-12 md:max-w-[835px]">
           <div
             className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[55%] w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 blur-3xl"
             style={{
@@ -165,21 +130,12 @@ export default function HeroSection() {
             {lowerFloaters.map((floater) => (
               <div
                 key={floater.src}
-                className={`pointer-events-none absolute transition-all duration-1000 ${
-                  floater.className
-                } ${
-                  isVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-4 opacity-0"
-                }`}
-                style={{ transitionDelay: floater.delay }}
+                className={`pointer-events-none absolute ${floater.className}`}
                 aria-hidden
               >
                 <div
                   style={{
-                    animation: isVisible
-                      ? "landing-float 3.2s ease-in-out infinite"
-                      : undefined,
+                    animation: "landing-float 3.2s ease-in-out infinite",
                     animationDelay: floater.delay,
                   }}
                 >
