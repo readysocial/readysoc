@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { HeroSection } from "@/components/landing";
+import { HeroSection, BuySparksSection } from "@/components/landing";
 import ListenerFeatures from "@/components/ListenerFeatures";
 import HeroBanner from "@/components/HeroBanner";
 import FAQ from "@/components/FAQ";
@@ -24,18 +24,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <HeroSection />
-
-      {/* New Screen 2 Section */}
-      <section className="relative w-full bg-white py-0">
-        <Image
-          src="/new screen/screen 2.png"
-          alt="How it works"
-          width={1920}
-          height={1080}
-          className="w-full h-auto"
-          priority
-        />
-      </section>
+      <BuySparksSection />
 
       {/* New Section: Links + Illustrations */}
       <section className="relative w-full bg-white py-12 sm:py-16 md:py-24 px-4 sm:px-8 md:px-12 lg:px-24 overflow-hidden">

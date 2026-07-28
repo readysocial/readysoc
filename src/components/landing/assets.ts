@@ -14,9 +14,8 @@ export const landingAssets = {
     logoMark: "/landing/brand/logo-mark.svg",
   },
   hero: {
-    phoneCenter: "/landing/hero/phone-center.png",
-    phoneLeft: "/landing/hero/phone-left.png",
-    phoneRight: "/landing/hero/phone-right.png",
+    /** Pre-rasterized 3-phone stack from Paper (blur baked in) */
+    phoneStack: "/landing/hero/phone-stack.png",
     floaterSing: "/landing/hero/floater-heart-sing.png",
     floaterListen: "/landing/hero/floater-heart-listen.png",
     floaterSad: "/landing/hero/floater-heart-sad.png",
@@ -24,10 +23,10 @@ export const landingAssets = {
   },
   buy: {
     phoneTopup: "/landing/buy/phone-topup.png",
-    cardApple: "/landing/buy/card-apple.png",
-    cardCoin: "/landing/buy/card-coin.png",
-    cardPiggy: "/landing/buy/card-piggy.png",
-    cardSprout: "/landing/buy/card-sprout.png",
+    cardSuccess: "/landing/buy/card-success.png",
+    cardError: "/landing/buy/card-error.png",
+    cardGlowGiver: "/landing/buy/card-glow-giver.png",
+    cardGift: "/landing/buy/card-gift.png",
   },
   features: {
     giftSparks: "/landing/features/gift-sparks.png",

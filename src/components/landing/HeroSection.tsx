@@ -55,7 +55,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full overflow-x-clip bg-white pt-20"
+      className="relative w-full overflow-hidden bg-white pt-20"
     >
       <div className="relative mx-auto flex w-full max-w-[1512px] flex-col items-center px-4 sm:px-8 md:px-12 lg:px-20">
         {/* Headline band + floaters */}
@@ -145,9 +145,9 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Phone stack */}
+        {/* Rasterized phone stack from Paper — sits flush at section bottom */}
         <div
-          className={`relative z-10 mt-8 w-full max-w-[720px] transition-all duration-1000 sm:mt-10 md:mt-12 md:max-w-[835px] ${
+          className={`relative z-10 mt-8 w-full max-w-[720px] pb-0 transition-all duration-1000 sm:mt-10 md:mt-12 md:max-w-[835px] ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
           style={{ transitionDelay: "550ms" }}
@@ -161,8 +161,7 @@ export default function HeroSection() {
             aria-hidden
           />
 
-          {/* Aspect tracks taller 2x phone mockups (~9:19.5) */}
-          <div className="relative mx-auto aspect-[835/920] w-full">
+          <div className="relative mx-auto w-full">
             {lowerFloaters.map((floater) => (
               <div
                 key={floater.src}
@@ -196,42 +195,16 @@ export default function HeroSection() {
               </div>
             ))}
 
-            <div className="absolute left-0 top-[6%] hidden w-[46%] opacity-50 sm:block">
-              <Image
-                src={ASSETS.phoneLeft}
-                alt="Ready Social achievements screen"
-                width={1100}
-                height={2383}
-                quality={90}
-                className="h-auto w-full"
-                sizes="(max-width: 640px) 0px, 380px"
-              />
-            </div>
-
-            <div className="absolute right-0 top-[6%] hidden w-[46%] opacity-50 sm:block">
-              <Image
-                src={ASSETS.phoneRight}
-                alt="Ready Social listener sessions screen"
-                width={1100}
-                height={2383}
-                quality={90}
-                className="h-auto w-full"
-                sizes="(max-width: 640px) 0px, 380px"
-              />
-            </div>
-
-            <div className="absolute left-1/2 top-0 z-10 w-[70%] -translate-x-1/2 sm:w-[46%]">
-              <Image
-                src={ASSETS.phoneCenter}
-                alt="Ready Social home screen"
-                width={1200}
-                height={2600}
-                quality={90}
-                className="h-auto w-full drop-shadow-2xl"
-                sizes="(max-width: 640px) 70vw, 400px"
-                priority
-              />
-            </div>
+            <Image
+              src={ASSETS.phoneStack}
+              alt="Ready Social app screens"
+              width={1670}
+              height={1228}
+              quality={95}
+              className="relative z-10 h-auto w-full"
+              sizes="(max-width: 835px) 100vw, 835px"
+              priority
+            />
           </div>
         </div>
       </div>
