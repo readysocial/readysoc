@@ -58,7 +58,7 @@ export default function FinalCtaSection() {
           </a>
         </div>
 
-        <div className="pointer-events-none absolute bottom-0 right-[-4%] hidden w-[55%] max-w-[785px] sm:block lg:right-[2%] lg:w-[54%]">
+        <div className="pointer-events-none absolute bottom-0 right-0 hidden w-[55%] max-w-[785px] sm:block lg:w-[54%]">
           <Image
             src={ASSETS.phoneStack}
             alt="Ready Social app on phones"
