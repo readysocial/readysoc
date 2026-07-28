@@ -29,9 +29,16 @@ export const landingAssets = {
     cardGift: "/landing/buy/card-gift.png",
   },
   features: {
-    giftSparks: "/landing/features/gift-sparks.png",
+    buyWidget: "/landing/features/buy-sparks-widget.png",
+    trendingPhone: "/landing/features/trending-phone.png",
+    giftPhone: "/landing/features/gift-phone.png",
     joinTeam: "/landing/features/join-team.png",
-    productSearch: "/landing/features/product-search.png",
+  },
+  listeners: {
+    iconSafe: "/landing/listeners/icon-safe.png",
+    iconIdentity: "/landing/listeners/icon-identity.png",
+    iconTrained: "/landing/listeners/icon-trained.png",
+    iconCare: "/landing/listeners/icon-care.png",
   },
   cta: {
     phone: "/landing/cta/phone-cta.png",
