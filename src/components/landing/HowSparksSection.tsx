@@ -51,7 +51,7 @@ const STEPS = [
 
 function SignupStepCard() {
   return (
-    <div className="relative aspect-[729/458] w-full overflow-hidden rounded-3xl bg-[#F7F7F7]">
+    <div className="relative flex w-full flex-col overflow-hidden rounded-3xl bg-[#F7F7F7] md:aspect-[729/458] md:block">
       {/* Decorative pattern — tiled cover, no rotated layers (avoids overflow) */}
       <div
         className="pointer-events-none absolute inset-0 opacity-60"
@@ -64,8 +64,8 @@ function SignupStepCard() {
         aria-hidden
       />
 
-      {/* Signup modal */}
-      <div className="absolute left-1/2 top-[calc(50%-30px)] z-10 flex w-[min(88%,336px)] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-[22px] rounded-[22.5px] bg-white px-[22px] py-[38px] outline outline-1 outline-[#D5F1FF]">
+      {/* Signup modal — flow on mobile so it isn't clipped by aspect ratio */}
+      <div className="relative z-10 mx-auto mt-8 flex w-[min(88%,336px)] flex-col items-center gap-[22px] rounded-[22.5px] bg-white px-[22px] py-8 outline outline-1 outline-[#D5F1FF] sm:py-[38px] md:absolute md:left-1/2 md:top-[calc(50%-30px)] md:mt-0 md:-translate-x-1/2 md:-translate-y-1/2">
         <div className="flex w-full flex-col items-center gap-2 px-1 text-center">
           <h3 className="max-w-[186px] font-[family-name:var(--font-landing-body)] text-[clamp(18px,2vw,22.5px)] font-semibold leading-[1.33] tracking-[-0.04em] text-[#0E121B]">
             Share Your Thoughts Freely
@@ -95,7 +95,7 @@ function SignupStepCard() {
         </div>
       </div>
 
-      <p className="absolute bottom-[5%] left-6 right-6 z-10 font-[family-name:var(--font-landing-body)] text-[clamp(13px,1.1vw,16px)] font-medium leading-[1.45] tracking-[-0.02em] text-[#5C5C5C]">
+      <p className="relative z-10 px-6 pb-6 pt-6 font-[family-name:var(--font-landing-body)] text-[clamp(13px,1.1vw,16px)] font-medium leading-[1.45] tracking-[-0.02em] text-[#5C5C5C] md:absolute md:bottom-[5%] md:left-6 md:right-6 md:px-0 md:pb-0 md:pt-0">
         Tap into the Ready Social universe. Sign-up in moments.
       </p>
     </div>
@@ -116,8 +116,8 @@ function ImageStepCard({
   height: number;
 }) {
   return (
-    <div className="relative aspect-[729/458] w-full overflow-hidden rounded-3xl bg-[#F7F7F7]">
-      <div className="absolute left-1/2 top-[calc(50%-43px)] w-[95.6%] -translate-x-1/2 -translate-y-1/2">
+    <div className="relative flex w-full flex-col overflow-hidden rounded-3xl bg-[#F7F7F7] md:aspect-[729/458] md:block">
+      <div className="relative z-10 mx-auto mt-6 w-[95.6%] md:absolute md:left-1/2 md:top-[calc(50%-43px)] md:mt-0 md:-translate-x-1/2 md:-translate-y-1/2">
         <Image
           src={src}
           alt={alt}
@@ -128,7 +128,7 @@ function ImageStepCard({
           sizes="(max-width: 1024px) 100vw, 729px"
         />
       </div>
-      <p className="absolute bottom-[5%] left-6 right-6 z-10 max-w-[655px] font-[family-name:var(--font-landing-body)] text-[clamp(13px,1.1vw,16px)] font-medium leading-[1.45] tracking-[-0.02em] text-[#5C5C5C]">
+      <p className="relative z-10 max-w-[655px] px-6 pb-6 pt-4 font-[family-name:var(--font-landing-body)] text-[clamp(13px,1.1vw,16px)] font-medium leading-[1.45] tracking-[-0.02em] text-[#5C5C5C] md:absolute md:bottom-[5%] md:left-6 md:right-6 md:px-0 md:pb-0 md:pt-0">
         {caption}
       </p>
     </div>
