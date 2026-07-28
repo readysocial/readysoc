@@ -23,7 +23,7 @@ export default function Footer() {
   };
 
   const linkClass =
-    "font-[family-name:var(--font-landing-body)] text-base font-normal leading-6 tracking-[-0.011em] text-[#171717] transition-colors hover:text-[#5C5C5C]";
+    "inline-block w-fit cursor-pointer rounded-sm font-[family-name:var(--font-landing-body)] text-base font-normal leading-6 tracking-[-0.011em] text-[#171717] transition-colors duration-200 hover:text-[#E63947] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E63947]/35 focus-visible:ring-offset-2";
   const headingClass =
     "font-[family-name:var(--font-landing-body)] text-base font-normal leading-6 tracking-[-0.011em] text-[#5C5C5C]";
 
@@ -57,7 +57,7 @@ export default function Footer() {
                   <button
                     type="button"
                     onClick={() => handleNavigation("faq")}
-                    className={`${linkClass} cursor-pointer text-left`}
+                    className={`${linkClass} text-left`}
                   >
                     FAQs
                   </button>
@@ -82,7 +82,7 @@ export default function Footer() {
                   <button
                     type="button"
                     onClick={() => handleNavigation("home")}
-                    className={`${linkClass} cursor-pointer text-left`}
+                    className={`${linkClass} text-left`}
                   >
                     Home
                   </button>
@@ -91,7 +91,7 @@ export default function Footer() {
                   <button
                     type="button"
                     onClick={() => handleNavigation("about")}
-                    className={`${linkClass} cursor-pointer text-left`}
+                    className={`${linkClass} text-left`}
                   >
                     About Us
                   </button>
@@ -100,7 +100,7 @@ export default function Footer() {
                   <button
                     type="button"
                     onClick={() => handleNavigation("how-it-works")}
-                    className={`${linkClass} cursor-pointer text-left`}
+                    className={`${linkClass} text-left`}
                   >
                     How It Works
                   </button>
@@ -121,7 +121,11 @@ export default function Footer() {
             <div className="flex min-w-[232px] flex-col gap-4">
               <h4 className={headingClass}>Contact Info</h4>
               <ul className="flex flex-col gap-2">
-                <li className={linkClass}>+234 901 796 4775</li>
+                <li>
+                  <a href="tel:+2349017964775" className={linkClass}>
+                    +234 901 796 4775
+                  </a>
+                </li>
                 <li>
                   <a
                     href="mailto:contactreadysocial@gmail.com"
