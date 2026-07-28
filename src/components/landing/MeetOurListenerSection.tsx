@@ -65,7 +65,7 @@ export default function MeetOurListenerSection() {
             {CARDS.map((card) => (
               <article
                 key={card.title}
-                className="flex h-[482px] w-[min(85vw,429px)] shrink-0 flex-col justify-between rounded-3xl p-8"
+                className="flex h-[382px] w-[min(85vw,429px)] shrink-0 flex-col justify-between rounded-3xl p-8"
                 style={{
                   backgroundColor: card.bg,
                   outline: `0.5px solid ${card.outline}`,
@@ -80,7 +80,7 @@ export default function MeetOurListenerSection() {
                   className="h-20 w-20 object-contain"
                 />
                 <div className="flex max-w-[365px] flex-col gap-3">
-                  <h3 className="font-[family-name:var(--font-landing-body)] text-[clamp(18px,1.6vw,24px)] font-medium leading-8 tracking-[-0.04em] text-[#0E121B]">
+                  <h3 className="font-[family-name:var(--font-landing-body)] text-[clamp(18px,1.6vw,24px)] font-medium text-[#0E121B]">
                     {card.title}
                   </h3>
                   <p className="font-[family-name:var(--font-landing-body)] text-sm font-normal leading-5 tracking-[-0.02em] text-[#525866]">

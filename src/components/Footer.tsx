@@ -6,39 +6,6 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { landingAssets } from "@/components/landing/assets";
 
-const SOCIAL = [
-  {
-    src: "/landing/footer/social-1.png",
-    label: "X (Twitter)",
-    href: "https://x.com/readyy_social?t=a4UdyA1lPJRtojDSLnyxyQ&s=08",
-  },
-  {
-    src: "/landing/footer/social-2.png",
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/",
-  },
-  {
-    src: "/landing/footer/social-3.png",
-    label: "Facebook",
-    href: "https://www.facebook.com/share/1W5wNcWBAu/",
-  },
-  {
-    src: "/landing/footer/social-4.png",
-    label: "GitHub",
-    href: "https://github.com/",
-  },
-  {
-    src: "/landing/footer/social-5.png",
-    label: "Instagram",
-    href: "https://www.instagram.com/ready_social?igsh=YzljYTk1ODg3Zg==",
-  },
-  {
-    src: "/landing/footer/social-6.png",
-    label: "Dribbble",
-    href: "https://dribbble.com/",
-  },
-] as const;
-
 /**
  * Desktop composition from Paper MacBook Pro 14" - 10 footer.
  */
@@ -169,30 +136,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex flex-col gap-6 border-t border-[#EAECF0] pt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+        <div className="border-t border-[#EAECF0] pt-8">
           <p className="font-[family-name:var(--font-landing-body)] text-base font-normal leading-6 text-[#667085]">
             © 2025 Ready Social. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            {SOCIAL.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={item.label}
-                className="opacity-80 transition-opacity hover:opacity-100"
-              >
-                <Image
-                  src={item.src}
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="h-6 w-6"
-                />
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

@@ -83,10 +83,7 @@ export default function BuySparksSection() {
       className="relative w-full bg-white px-6 pb-10 pt-6 lg:px-8 lg:pb-12 lg:pt-6"
       aria-labelledby="buy-sparks-heading"
     >
-      <div
-        className="relative mx-auto flex w-full max-w-[1464px] flex-col overflow-hidden rounded-[24px] border border-[#2597D0] shadow-[0px_6px_0px_#2597D0] lg:aspect-[1464/934] lg:block"
-        style={{ backgroundColor: "#1391C1" }}
-      >
+      <div className="relative mx-auto flex w-full max-w-[1464px] bg-[#1391C1] flex-col overflow-hidden rounded-[24px] border border-[#2597D0] shadow-[0px_6px_0px_#2597D0] lg:aspect-[1464/934] lg:block">
         {/* Copy — in flow below lg; absolute Paper position on desktop */}
         <div className="relative z-20 mx-auto flex w-[min(92%,649px)] flex-col items-center gap-3 px-2 pb-6 pt-10 text-center sm:gap-4 sm:pb-8 sm:pt-12 lg:absolute lg:left-1/2 lg:top-[7.6%] lg:w-[min(90%,649px)] lg:-translate-x-1/2 lg:px-0 lg:pb-0 lg:pt-0">
           <h2
@@ -102,7 +99,7 @@ export default function BuySparksSection() {
         </div>
 
         {/* Art stage — below copy on tablet; lower 70% of band on desktop */}
-        <div className="relative mx-auto aspect-[1464/660] w-full max-w-[920px] origin-top scale-[0.92] sm:scale-95 lg:absolute lg:inset-x-0 lg:bottom-0 lg:top-[30%] lg:aspect-auto lg:max-w-none lg:scale-100">
+        <div className="relative mx-auto aspect-[1464/660] w-full max-w-[920px] origin-top scale-[0.92] sm:scale-95 lg:absolute lg:inset-x-0 -bottom-[20px] lg:top-[40%] lg:aspect-auto lg:max-w-none lg:scale-100">
           {LAYERS.map((layer) => (
             <div
               key={layer.src}
