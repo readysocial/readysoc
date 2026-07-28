@@ -63,7 +63,7 @@ export default function Navbar() {
           <div className="flex min-w-[120px] items-center md:min-w-[140px]">
             <Link href="/" className="flex items-center">
               <Image
-                src="/landing/logo-mark.svg"
+                src="/landing/brand/logo-mark.svg"
                 alt="Ready Social"
                 width={39}
                 height={24}

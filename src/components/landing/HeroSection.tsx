@@ -4,19 +4,23 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { landingAssets } from "./assets";
+
 const PLAY_STORE =
   "https://play.google.com/store/apps/details?id=com.tayor99.readysocial";
 
+const { hero: ASSETS } = landingAssets;
+
 const floaters = [
   {
-    src: "/landing/spark-coin.png",
+    src: ASSETS.floaterSing,
     alt: "Happy blue Spark character",
     className:
       "left-[2%] top-2 w-14 -rotate-[11deg] sm:left-[6%] sm:top-4 sm:w-20 md:left-[8%] md:top-6 md:w-[107px] lg:left-[12%]",
     delay: "700ms",
   },
   {
-    src: "/landing/spark-sprout.png",
+    src: ASSETS.floaterListen,
     alt: "Listening blue Spark character",
     className:
       "right-[2%] top-0 w-12 sm:right-[6%] sm:top-2 sm:w-[72px] md:right-[8%] md:w-[100px] lg:right-[12%]",
@@ -26,14 +30,14 @@ const floaters = [
 
 const lowerFloaters = [
   {
-    src: "/landing/spark-apple.png",
+    src: ASSETS.floaterSad,
     alt: "Sad red Spark character",
     className:
       "left-[2%] top-0 z-20 w-12 -rotate-[15deg] sm:left-[4%] sm:w-16 md:-left-2 md:w-[82px] lg:-left-6",
     delay: "950ms",
   },
   {
-    src: "/landing/spark-piggy.png",
+    src: ASSETS.floaterWallet,
     alt: "Green wallet Spark character",
     className:
       "right-[2%] top-4 z-20 w-14 rotate-[30deg] sm:right-[4%] sm:w-18 md:-right-2 md:w-[94px] lg:-right-8",
@@ -80,8 +84,9 @@ export default function HeroSection() {
                 <Image
                   src={floater.src}
                   alt=""
-                  width={128}
-                  height={128}
+                  width={256}
+                  height={256}
+                  quality={90}
                   className="h-auto w-full drop-shadow-sm"
                 />
               </div>
@@ -142,7 +147,7 @@ export default function HeroSection() {
 
         {/* Phone stack */}
         <div
-          className={`relative z-10 mt-8 w-full max-w-[835px] transition-all duration-1000 sm:mt-10 md:mt-12 ${
+          className={`relative z-10 mt-8 w-full max-w-[720px] transition-all duration-1000 sm:mt-10 md:mt-12 md:max-w-[835px] ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
           style={{ transitionDelay: "550ms" }}
@@ -156,7 +161,8 @@ export default function HeroSection() {
             aria-hidden
           />
 
-          <div className="relative mx-auto aspect-[835/780] w-full">
+          {/* Aspect tracks taller 2x phone mockups (~9:19.5) */}
+          <div className="relative mx-auto aspect-[835/920] w-full">
             {lowerFloaters.map((floater) => (
               <div
                 key={floater.src}
@@ -181,44 +187,48 @@ export default function HeroSection() {
                   <Image
                     src={floater.src}
                     alt=""
-                    width={128}
-                    height={128}
+                    width={256}
+                    height={256}
+                    quality={90}
                     className="h-auto w-full drop-shadow-sm"
                   />
                 </div>
               </div>
             ))}
 
-            <div className="absolute left-0 top-[8%] hidden w-[48%] opacity-50 sm:block md:w-[47.9%]">
+            <div className="absolute left-0 top-[6%] hidden w-[46%] opacity-50 sm:block">
               <Image
-                src="/landing/phone-left.png"
+                src={ASSETS.phoneLeft}
                 alt="Ready Social achievements screen"
-                width={800}
-                height={1088}
+                width={1100}
+                height={2383}
+                quality={90}
                 className="h-auto w-full"
-                sizes="(max-width: 640px) 0px, 40vw"
+                sizes="(max-width: 640px) 0px, 380px"
               />
             </div>
 
-            <div className="absolute right-0 top-[8%] hidden w-[48%] opacity-50 sm:block md:w-[47.9%]">
+            <div className="absolute right-0 top-[6%] hidden w-[46%] opacity-50 sm:block">
               <Image
-                src="/landing/phone-right.png"
+                src={ASSETS.phoneRight}
                 alt="Ready Social listener sessions screen"
-                width={800}
-                height={1088}
+                width={1100}
+                height={2383}
+                quality={90}
                 className="h-auto w-full"
-                sizes="(max-width: 640px) 0px, 40vw"
+                sizes="(max-width: 640px) 0px, 380px"
               />
             </div>
 
-            <div className="absolute left-1/2 top-0 z-10 w-[72%] -translate-x-1/2 sm:w-[47.9%]">
+            <div className="absolute left-1/2 top-0 z-10 w-[70%] -translate-x-1/2 sm:w-[46%]">
               <Image
-                src="/landing/phone-center.png"
+                src={ASSETS.phoneCenter}
                 alt="Ready Social home screen"
-                width={800}
-                height={1228}
+                width={1200}
+                height={2600}
+                quality={90}
                 className="h-auto w-full drop-shadow-2xl"
-                sizes="(max-width: 640px) 72vw, 40vw"
+                sizes="(max-width: 640px) 70vw, 400px"
                 priority
               />
             </div>
