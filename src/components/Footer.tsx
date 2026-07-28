@@ -74,9 +74,9 @@ export default function Footer() {
               <Image
                 src={landingAssets.brand.logoMark}
                 alt="Ready Social"
-                width={39}
-                height={24}
-                className="h-6 w-auto"
+                width={65}
+                height={40}
+                className="h-10 w-auto"
               />
             </Link>
           </div>

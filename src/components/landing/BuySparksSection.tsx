@@ -102,9 +102,7 @@ export default function BuySparksSection() {
         </div>
 
         {/* Art stage — below copy on tablet; lower 70% of band on desktop */}
-        <div
-          className="relative mx-auto aspect-[1464/660] w-full max-w-[920px] origin-top scale-[0.92] sm:scale-95 lg:absolute lg:inset-x-0 lg:bottom-0 lg:top-[30%] lg:aspect-auto lg:max-w-none lg:scale-100"
-        >
+        <div className="relative mx-auto aspect-[1464/660] w-full max-w-[920px] origin-top scale-[0.92] sm:scale-95 lg:absolute lg:inset-x-0 lg:bottom-0 lg:top-[30%] lg:aspect-auto lg:max-w-none lg:scale-100">
           {LAYERS.map((layer) => (
             <div
               key={layer.src}

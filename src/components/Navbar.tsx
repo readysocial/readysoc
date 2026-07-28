@@ -65,9 +65,9 @@ export default function Navbar() {
               <Image
                 src="/landing/brand/logo-mark.svg"
                 alt="Ready Social"
-                width={39}
-                height={24}
-                className="h-6 w-auto"
+                width={65}
+                height={40}
+                className="h-10 w-auto"
                 priority
               />
             </Link>
