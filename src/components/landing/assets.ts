@@ -41,7 +41,7 @@ export const landingAssets = {
     iconCare: "/landing/listeners/icon-care.png",
   },
   cta: {
-    phone: "/landing/cta/phone-cta.png",
+    phoneStack: "/landing/cta/phone-stack.png",
   },
   process: {
     stepSignupPattern: "/landing/process/step-signup-pattern.png",

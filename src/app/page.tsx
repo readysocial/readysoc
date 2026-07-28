@@ -2,8 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { HeroSection, BuySparksSection, HowSparksSection, WhatYouCanDoSection, MeetOurListenerSection } from "@/components/landing";
-import HeroBanner from "@/components/HeroBanner";
+import { HeroSection, BuySparksSection, HowSparksSection, WhatYouCanDoSection, MeetOurListenerSection, FinalCtaSection } from "@/components/landing";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
@@ -32,7 +31,7 @@ export default function Home() {
 
       <FAQ />
 
-      <HeroBanner />
+      <FinalCtaSection />
 
       <Footer />
 
