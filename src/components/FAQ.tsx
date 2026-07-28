@@ -44,14 +44,15 @@ function PlusMinusIcon({ open }: { open: boolean }) {
         strokeWidth="1.5"
         strokeLinecap="round"
       />
-      {!open && (
-        <path
-          d="M7 2.5v9"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      )}
+      <path
+        d="M7 2.5v9"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        className={`origin-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+          open ? "scale-y-0" : "scale-y-100"
+        }`}
+      />
     </svg>
   );
 }
@@ -83,13 +84,18 @@ export default function FAQ() {
           <div className="flex flex-col border-b border-[#ECECED]">
             {faqs.map((faq, i) => {
               const open = openIndex === i;
+              const panelId = `faq-panel-${i}`;
               return (
-                <div key={`${faq.question}-${i}`} className="border-t border-[#ECECED]">
+                <div
+                  key={`${faq.question}-${i}`}
+                  className="border-t border-[#ECECED]"
+                >
                   <button
                     type="button"
                     className="flex w-full items-start gap-4 py-8 text-left"
                     onClick={() => setOpenIndex(open ? null : i)}
                     aria-expanded={open}
+                    aria-controls={panelId}
                   >
                     <span className="min-w-0 flex-1 font-[family-name:var(--font-landing-body)] text-lg font-medium leading-6 tracking-[-0.26px] text-[#171717]">
                       {faq.question}
@@ -98,11 +104,26 @@ export default function FAQ() {
                       <PlusMinusIcon open={open} />
                     </span>
                   </button>
-                  {open && (
-                    <p className="pb-8 pr-10 font-[family-name:var(--font-landing-body)] text-base font-normal leading-[1.45] tracking-[-0.02em] text-[#5C5C5C]">
-                      {faq.answer}
-                    </p>
-                  )}
+                  <div
+                    id={panelId}
+                    role="region"
+                    aria-hidden={!open}
+                    className={`grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                      open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p
+                        className={`pb-8 pr-10 font-[family-name:var(--font-landing-body)] text-base font-normal leading-[1.45] tracking-[-0.02em] text-[#5C5C5C] transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+                          open
+                            ? "translate-y-0 opacity-100"
+                            : "-translate-y-1 opacity-0"
+                        }`}
+                      >
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               );
             })}
