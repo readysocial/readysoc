@@ -29,19 +29,10 @@ export default function Home() {
       <WhatYouCanDoSection />
 
       <MeetOurListenerSection />
+
+      <FAQ />
+
       <HeroBanner />
-
-      {/* FAQ Section */}
-      <section id="faq" className="bg-[#f8fafc]">
-        <FAQ />
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="bg-white">
-        <div className="container mx-auto max-w-6xl px-4 py-12">
-          {/* Add your contact content here */}
-        </div>
-      </section>
 
       <Footer />
 
