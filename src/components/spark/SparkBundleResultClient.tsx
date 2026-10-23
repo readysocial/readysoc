@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { apiFetch, ApiError } from "../../lib/api";
+import { apiFetch, ApiError, getUserFacingMessage } from "../../lib/api";
 import { getToken } from "../../lib/auth";
 import SparkBundleHeader from "./SparkBundleHeader";
 import ConfettiBurst from "./ConfettiBurst";
@@ -107,9 +107,10 @@ export default function SparkBundleResultClient() {
         if (err instanceof ApiError && err.status === 401) return;
         setStatus("failed");
         setMessage(
-          err instanceof Error
-            ? err.message
-            : "Payment verification failed. Please try again.",
+          getUserFacingMessage(
+            err,
+            "Payment verification failed. Please try again.",
+          ),
         );
       }
     };
