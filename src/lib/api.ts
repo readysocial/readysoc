@@ -12,12 +12,30 @@ export class ApiError extends Error {
   }
 }
 
+export class ApiConfigError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ApiConfigError";
+  }
+}
+
 function getApiBaseUrl(): string {
   const base = process.env.NEXT_PUBLIC_API_BASE_URL;
   if (!base) {
-    throw new Error("NEXT_PUBLIC_API_BASE_URL is not configured");
+    throw new ApiConfigError("NEXT_PUBLIC_API_BASE_URL is not configured");
   }
   return base.replace(/\/$/, "");
+}
+
+/**
+ * Only ApiError messages are safe to show to users (they come from the API).
+ * Config errors, network TypeErrors, and internal invariant violations must
+ * map to a generic fallback so we never leak internals like env var names.
+ */
+export function getUserFacingMessage(err: unknown, fallback: string): string {
+  if (err instanceof ApiError) return err.message;
+  console.error(err);
+  return fallback;
 }
 
 function extractErrorMessage(data: unknown, fallback: string): string {
