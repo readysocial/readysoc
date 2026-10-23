@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { formatNaira, SPARK_BUNDLES } from "../../lib/spark-bundles";
-import { apiFetch, ApiError } from "../../lib/api";
+import { apiFetch, ApiError, getUserFacingMessage } from "../../lib/api";
 import { getToken } from "../../lib/auth";
 import SparkBundleCard from "./SparkBundleCard";
 import SparkBundleHeader from "./SparkBundleHeader";
@@ -18,6 +18,25 @@ type PaymentInitResponse = {
   message: string;
   data: {
     authorizationUrl: string;
+    methodId?: string;
+  };
+};
+
+type PaymentMethod = {
+  id: string;
+  kind: "provider" | "website";
+  label: string;
+  description?: string;
+  flow: string;
+  providerName?: string;
+};
+
+type PaymentMethodsResponse = {
+  message: string;
+  data: {
+    platform: "web";
+    defaultMethodId: string;
+    methods: PaymentMethod[];
   };
 };
 
@@ -25,6 +44,8 @@ export default function SparkBundlePage() {
   const router = useRouter();
   const [selectedId, setSelectedId] = useState<string | null>("most-popular");
   const [balance, setBalance] = useState<number | null>(null);
+  const [methods, setMethods] = useState<PaymentMethod[]>([]);
+  const [selectedMethodId, setSelectedMethodId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isPaying, setIsPaying] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +55,7 @@ export default function SparkBundlePage() {
     [selectedId],
   );
 
-  const loadBalance = useCallback(async () => {
+  const loadPage = useCallback(async () => {
     setError(null);
     setIsLoading(true);
 
@@ -44,25 +65,43 @@ export default function SparkBundlePage() {
         return;
       }
 
-      const sparksResult = await apiFetch<SparksResponse>("/users/sparks");
+      const [sparksResult, methodsResult] = await Promise.all([
+        apiFetch<SparksResponse>("/users/sparks"),
+        apiFetch<PaymentMethodsResponse>("/payments/methods/web").catch(
+          () => null,
+        ),
+      ]);
+
       setBalance(sparksResult.data?.sparks ?? 0);
+
+      const methodList = methodsResult?.data?.methods ?? [];
+      setMethods(methodList);
+
+      const defaultMethodId =
+        methodsResult?.data?.defaultMethodId ?? methodList[0]?.id ?? null;
+      setSelectedMethodId((current) =>
+        current && methodList.some((method) => method.id === current)
+          ? current
+          : defaultMethodId,
+      );
     } catch (err) {
       if (err instanceof ApiError && err.status === 401) {
         return;
       }
-      const message =
-        err instanceof Error
-          ? err.message
-          : "Unable to load your spark balance. Please try again.";
-      setError(message);
+      setError(
+        getUserFacingMessage(
+          err,
+          "Unable to load your spark balance. Please try again.",
+        ),
+      );
     } finally {
       setIsLoading(false);
     }
   }, [router]);
 
   useEffect(() => {
-    loadBalance();
-  }, [loadBalance]);
+    loadPage();
+  }, [loadPage]);
 
   const handlePay = async () => {
     if (!selected || isPaying) return;
@@ -74,13 +113,10 @@ export default function SparkBundlePage() {
       const result = await apiFetch<PaymentInitResponse>("/payments", {
         method: "POST",
         body: {
-          amount: selected.price,
-          description: `Top-up ${selected.sparks} Sparks`,
-          metadata: {
-            client: "web",
-            bundleId: selected.id,
-            sparksAmount: selected.sparks,
-          },
+          // The server prices the spark count; selected.price is display only
+          sparks: selected.sparks,
+          ...(selectedMethodId ? { methodId: selectedMethodId } : {}),
+          metadata: { client: "web" },
         },
       });
 
@@ -94,11 +130,9 @@ export default function SparkBundlePage() {
       if (err instanceof ApiError && err.status === 401) {
         return;
       }
-      const message =
-        err instanceof Error
-          ? err.message
-          : "Unable to start payment. Please try again.";
-      setError(message);
+      setError(
+        getUserFacingMessage(err, "Unable to start payment. Please try again."),
+      );
       setIsPaying(false);
     }
   };
@@ -157,6 +191,25 @@ export default function SparkBundlePage() {
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-black/8 bg-white/90 px-4 py-3 backdrop-blur-md sm:px-6">
           <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="min-h-[2.5rem]">
+              {methods.length > 1 ? (
+                <div className="mb-2 flex flex-wrap items-center gap-2">
+                  <span className="text-xs text-[#99A0AE]">Pay with</span>
+                  {methods.map((method) => (
+                    <button
+                      key={method.id}
+                      type="button"
+                      onClick={() => setSelectedMethodId(method.id)}
+                      className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors ${
+                        selectedMethodId === method.id
+                          ? "border-[#f6535b] bg-[#f6535b]/10 text-[#e54a52]"
+                          : "border-black/10 bg-white text-[#5A5758] hover:border-black/20"
+                      }`}
+                    >
+                      {method.label}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
               {selected ? (
                 <p className="text-sm text-[#5A5758]">
                   <span className="font-semibold text-[#0E121B]">
