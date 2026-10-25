@@ -37,17 +37,29 @@ export default function SparkBundleResultClient() {
     return value;
   }, [searchParams]);
 
-  const [status, setStatus] = useState<"loading" | "success" | "failed">(
-    "loading",
-  );
+  const [status, setStatus] = useState<
+    "loading" | "success" | "pending" | "failed"
+  >("loading");
+  const [failedTitle, setFailedTitle] = useState("Payment incomplete");
   const [message, setMessage] = useState("Verifying your payment...");
   const [balance, setBalance] = useState<number | null>(null);
   const [sparksAdded, setSparksAdded] = useState<number | null>(null);
+  // Bumped by "Check again" to re-run verification.
+  const [checkCount, setCheckCount] = useState(0);
+
+  const showFailure = (title: string, text: string) => {
+    setFailedTitle(title);
+    setMessage(text);
+    setStatus("failed");
+  };
 
   useEffect(() => {
     let cancelled = false;
 
     const run = async () => {
+      setStatus("loading");
+      setMessage("Verifying your payment...");
+
       if (!getToken()) {
         const next = encodeURIComponent(
           `/spark-bundle/result?reference=${encodeURIComponent(reference)}`,
@@ -57,8 +69,7 @@ export default function SparkBundleResultClient() {
       }
 
       if (!reference) {
-        setStatus("failed");
-        setMessage("Missing payment reference.");
+        showFailure("Payment incomplete", "Missing payment reference.");
         return;
       }
 
@@ -69,28 +80,34 @@ export default function SparkBundleResultClient() {
 
         if (cancelled) return;
 
+        // Decide from the payment status only; the message text is not a
+        // reliable success signal.
         const paymentStatus =
           result.data?.payment?.status || result.data?.status || "";
-        const isSuccess =
-          paymentStatus === "completed" ||
-          paymentStatus === "successful" ||
-          /success/i.test(result.message || "");
 
-        if (isSuccess) {
+        if (paymentStatus === "completed" || paymentStatus === "successful") {
           setStatus("success");
           setMessage("Your Sparks have been added to your wallet.");
           setSparksAdded(result.data?.payment?.metadata?.sparksAmount ?? null);
         } else if (paymentStatus === "pending") {
-          setStatus("failed");
+          setStatus("pending");
           setMessage(
-            "Payment is still processing. Refresh this page in a moment.",
+            "We're still confirming your payment with the bank. This usually takes under a minute. If you were charged, your Sparks will be added automatically.",
+          );
+        } else if (paymentStatus === "cancelled") {
+          showFailure(
+            "Payment cancelled",
+            "The payment was cancelled, so no Sparks were added. You can start a new one any time.",
+          );
+        } else if (paymentStatus === "failed") {
+          showFailure(
+            "Payment failed",
+            "The payment didn't go through, so no Sparks were added. You can try again with the same or a different card.",
           );
         } else {
-          setStatus("failed");
-          setMessage(
-            result.data?.message ||
-              result.message ||
-              "Payment could not be verified.",
+          showFailure(
+            "Payment incomplete",
+            "We couldn't confirm this payment. If you were charged, contact support with the reference below.",
           );
         }
 
@@ -105,8 +122,15 @@ export default function SparkBundleResultClient() {
       } catch (err) {
         if (cancelled) return;
         if (err instanceof ApiError && err.status === 401) return;
-        setStatus("failed");
-        setMessage(
+        if (err instanceof ApiError && err.status === 404) {
+          showFailure(
+            "Payment not found",
+            "We couldn't find this payment on your account. Make sure you're signed in with the account you paid from.",
+          );
+          return;
+        }
+        showFailure(
+          "Payment incomplete",
           getUserFacingMessage(
             err,
             "Payment verification failed. Please try again.",
@@ -119,7 +143,7 @@ export default function SparkBundleResultClient() {
     return () => {
       cancelled = true;
     };
-  }, [reference, router]);
+  }, [reference, router, checkCount]);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#fffaf8]">
@@ -169,13 +193,32 @@ export default function SparkBundleResultClient() {
             </>
           ) : null}
 
+          {status === "pending" ? (
+            <>
+              <div className="mb-5 h-12 w-12 animate-spin rounded-full border-4 border-[#1e6a8e]/20 border-t-[#1e6a8e]" />
+              <h1 className="text-3xl font-bold tracking-tight text-[#0E121B]">
+                Payment processing
+              </h1>
+              <p className="mt-3 text-sm leading-relaxed text-[#5A5758]">
+                {message}
+              </p>
+              <button
+                type="button"
+                onClick={() => setCheckCount((n) => n + 1)}
+                className="mt-6 inline-flex h-11 items-center justify-center rounded-xl border border-[#1e6a8e] px-5 text-sm font-semibold text-[#1e6a8e] transition-colors hover:bg-[#eaf6fc]"
+              >
+                Check again
+              </button>
+            </>
+          ) : null}
+
           {status === "failed" ? (
             <>
               <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-3xl bg-[#fee2e2] text-[#f6535b]">
                 <span className="text-3xl font-bold">!</span>
               </div>
               <h1 className="text-3xl font-bold tracking-tight text-[#0E121B]">
-                Payment incomplete
+                {failedTitle}
               </h1>
               <p className="mt-3 text-sm leading-relaxed text-[#5A5758]">
                 {message}
