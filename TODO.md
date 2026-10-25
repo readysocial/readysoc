@@ -22,12 +22,10 @@ The earlier plan for an `/account` page is dropped: iOS no longer has a web
 account button, and a page that links to purchase would still count as
 steering.
 
-## Result page shows success for failed payments
+## Lint script is broken
 
-`src/components/spark/SparkBundleResultClient.tsx` treats any message
-containing "success" as success; the backend says "Payment processed
-successfully" for failed and cancelled payments too. Check the payment
-status only, and fix the backend message.
+`npm run lint` runs `next lint`, which Next.js 16 removed. Switch the
+script to the ESLint CLI (`eslint .`).
 
 ## Bundle prices are hardcoded
 
