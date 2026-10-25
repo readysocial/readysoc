@@ -1,16 +1,37 @@
 # TODO
 
-## Store compliance: dedicated web account page
+Website items from the full follow-up list in
+`ready-social-fe/docs/follow-ups.md`.
 
-The iOS app's **Settings → Manage your account on the web** currently deep-links
-straight to `/spark-bundle`, which is a purchase page. For stricter App Store
-compliance, add an authenticated `/account` page on this site that shows the
-balance and account details, with top-up as a secondary action, and point the
-mobile button there instead.
+## Hide purchase links when opened from the app (App Store 3.1.1)
 
-- Mobile: `ready-social-fe/app/(user)/Settings.tsx` (`WEB_TOP_UP_URL`)
-- Web: add `src/app/account/page.tsx`
-- Keep `/spark-bundle` as the actual top-up page.
+The iOS app no longer links to `/spark-bundle`, but its Settings still opens
+Terms, Privacy and FAQ here, and every page has a navbar link to buying.
+When a page is opened with `?from=app`, hide purchase links and sections for
+the rest of that browsing session:
 
-The current compromise keeps the mobile label neutral ("Manage your account on
-the web") instead of an explicit purchase CTA.
+- `src/components/Navbar.tsx` (bundle link)
+- `src/components/landing/*` (Buy Sparks, hero and "how Sparks work" CTAs)
+- `src/components/FAQ.tsx` (links to buying)
+
+The app side adds `?from=app` to those links, and fixes its Privacy link,
+which points at `/privacy-policy` instead of `/privacy`. Email links don't
+carry the parameter and show the normal site.
+
+The earlier plan for an `/account` page is dropped: iOS no longer has a web
+account button, and a page that links to purchase would still count as
+steering.
+
+## Result page shows success for failed payments
+
+`src/components/spark/SparkBundleResultClient.tsx` treats any message
+containing "success" as success; the backend says "Payment processed
+successfully" for failed and cancelled payments too. Check the payment
+status only, and fix the backend message.
+
+## Bundle prices are hardcoded
+
+`src/lib/spark-bundles.ts` assumes ₦1,500 per Spark; the charge follows the
+admin rate. Read the rate from the API.
+
+Staging deployment: https://vercel.com/imdmanuels-projects/readysoc-staging
