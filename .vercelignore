@@ -1,0 +1,6 @@
+# CLI deploys must use the Vercel project's environment variables, never a
+# developer's local env (e.g. .env.local pointing at a local backend).
+.env*
+!.env.example
+node_modules
+.next

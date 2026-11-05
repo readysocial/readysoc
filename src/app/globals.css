@@ -3,6 +3,17 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Marketing / landing */
+  --landing-primary: #fb3748;
+  --landing-primary-ring: #e93544;
+  --landing-text: #171717;
+  --landing-muted: #5c5c5c;
+  --landing-sub: #525866;
+  --landing-stroke: #e1e4ea;
+  --landing-sky: #5cc3eb;
+  --font-landing-display: "Cal Sans", var(--font-inter), system-ui, sans-serif;
+  --font-landing-body: "Geist", var(--font-inter), system-ui, sans-serif;
 }
 
 @theme inline {
@@ -50,10 +61,24 @@ input:-webkit-autofill:focus {
   animation: sparkFadeUp 480ms ease-out both;
 }
 
+@keyframes landing-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .spark-card,
   .spark-card * {
     animation: none !important;
     transition: none !important;
+  }
+
+  [style*="landing-float"] {
+    animation: none !important;
   }
 }

@@ -2,31 +2,46 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+
+const PLAY_STORE =
+  "https://play.google.com/store/apps/details?id=com.tayor99.readysocial";
 
 const navLinks = [
   { name: "Home", href: "#home" },
-  { name: "About Us", href: "#about" },
-  { name: "How it Works", href: "#how-it-works" },
-  // { name: "Contact Us", href: "/contact" },
+  { name: "About us", href: "#about" },
+  { name: "How it works", href: "#how-it-works" },
   { name: "FAQ", href: "#faq" },
 ];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (pathname?.startsWith("/spark-bundle")) {
     return null;
   }
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     e.preventDefault();
     setIsMenuOpen(false);
 
-    if (pathname === '/') {
+    if (pathname === "/") {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
@@ -37,132 +52,119 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full flex items-center justify-between py-4 px-4 md:px-6 bg-white shadow-sm relative">
-      {/* Left: Logo */}
-      <div className="flex items-center gap-2 min-w-[140px] md:min-w-[180px]">
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/RS icon png@3x 1.png"
-            alt="Ready Social Logo"
-            width={32}
-            height={32}
-            className="w-8 h-8 md:w-10 md:h-10"
-            priority
-          />
-          <span className="font-bold text-base md:text-lg text-gray-800">Ready Social</span>
-        </Link>
-      </div>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-white"
+      }`}
+    >
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
+        <div className="flex items-center justify-between h-20">
+          {/* Left: Logo */}
+          <div className="flex min-w-[120px] items-center md:min-w-[140px]">
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/landing/brand/logo-mark.svg"
+                alt="Ready Social"
+                width={65}
+                height={40}
+                className="h-10 w-auto"
+                priority
+              />
+            </Link>
+          </div>
 
-      {/* Mobile Menu Button */}
-      <button
-        className="md:hidden p-2"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        aria-label="Toggle menu"
-      >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          {isMenuOpen ? (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          ) : (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          )}
-        </svg>
-      </button>
+          {/* Desktop: Centered Nav Links */}
+          <ul className="hidden items-center gap-8 text-sm font-medium text-[#475467] md:flex">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="cursor-pointer tracking-[-0.084px] transition-colors duration-200 hover:text-[#fb3748]"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-      {/* Desktop: Nav Links */}
-      <ul className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 gap-8 items-center text-base font-medium text-gray-700">
-        {navLinks.map((link) => (
-          <li key={link.name}>
-            {link.href.startsWith("/") ? (
-              <Link href={link.href} className="hover:text-red-500 transition-colors cursor-pointer">
-                {link.name}
-              </Link>
-            ) : (
+          {/* Right: Download app */}
+          <div className="hidden min-w-[120px] justify-end md:flex md:min-w-[140px]">
             <a
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="hover:text-red-500 transition-colors cursor-pointer"
+              href={PLAY_STORE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-10 items-center justify-center rounded-[10px] border border-[#e1e4ea] bg-white px-3 text-sm font-medium tracking-[-0.084px] text-[#525866] shadow-[0px_1px_2px_0px_rgba(10,13,20,0.03)] transition-colors hover:bg-[#f8fafc]"
             >
-              {link.name}
+              Download app
             </a>
-            )}
-          </li>
-        ))}
-      </ul>
+          </div>
 
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden fixed inset-0 bg-white z-50 transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex flex-col h-full">
-          <div className="flex justify-end p-4">
-            <button
-              className="p-2"
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Close menu"
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 z-50"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-6 h-6 text-gray-900"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              {isMenuOpen ? (
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
                   d="M6 18L18 6M6 6l12 12"
                 />
-              </svg>
-            </button>
-          </div>
-          <ul className="flex flex-col items-center gap-6 p-8">
-            {navLinks.map((link) => (
-              <li key={link.name} className="w-full text-center">
-                {link.href.startsWith("/") ? (
-                  <Link href={link.href} className="block text-lg font-medium text-gray-700 hover:text-red-500 transition-colors cursor-pointer">
-                    {link.name}
-                  </Link>
-                ) : (
-                <a
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="block text-lg font-medium text-gray-700 hover:text-red-500 transition-colors cursor-pointer"
-                >
-                  {link.name}
-                </a>
-                )}
-              </li>
-            ))}
-          </ul>
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
         </div>
       </div>
 
-      {/* Right: CTA */} 
-      <div className="hidden min-w-[180px] md:flex md:justify-end">
-        <Link
-          href="/login"
-          className="rounded-full border border-[#f6535b] px-5 py-2 text-sm font-semibold text-[#f6535b] transition-colors hover:bg-[#f6535b] hover:text-white"
-        >
-          Log in
-        </Link>
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col h-full pt-20">
+          <ul className="flex flex-col items-center gap-8 p-8">
+            {navLinks.map((link) => (
+              <li key={link.name} className="w-full text-center">
+                <a
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="block cursor-pointer text-lg font-medium text-[#475467] transition-colors hover:text-[#fb3748]"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+            <li className="w-full pt-4 text-center">
+              <a
+                href={PLAY_STORE}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-10 items-center justify-center rounded-[10px] border border-[#e1e4ea] bg-white px-6 text-sm font-medium text-[#525866]"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Download app
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
-} 
+}

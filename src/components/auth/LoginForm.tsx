@@ -9,7 +9,7 @@ import OrDivider from "./OrDivider";
 import { PRIMARY } from "./constants";
 import { GoogleIcon, MailIcon } from "./icons";
 import PasswordField from "../PasswordField";
-import { apiFetch, ApiError } from "../../lib/api";
+import { apiFetch, getUserFacingMessage } from "../../lib/api";
 import { setToken } from "../../lib/auth";
 
 type AuthResponse = {
@@ -60,13 +60,7 @@ export default function LoginForm() {
       setToken(result.accessToken);
       router.replace(nextPath);
     } catch (err) {
-      const message =
-        err instanceof ApiError
-          ? err.message
-          : err instanceof Error
-            ? err.message
-            : "Unable to log in. Please try again.";
-      setError(message);
+      setError(getUserFacingMessage(err, "Unable to log in. Please try again."));
     } finally {
       setIsLoading(false);
     }
